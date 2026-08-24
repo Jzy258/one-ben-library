@@ -1,3 +1,9 @@
+---
+title: '01 environments'
+---
+
+# 01 environments
+
 `<environments>`：
 * 用于定义不同的数据库环境（不同 DBMS、数据库、用户等）
 * 包含若个 `<environment>`，每个 `<environment>` 对应一个 `id`

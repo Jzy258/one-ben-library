@@ -1,3 +1,9 @@
+---
+title: '34 Listener监听器'
+---
+
+# 34 Listener监听器
+
 监听器：
 * Servlet 规范之一
 * 所有监听器接口以 `Listener` 结尾
@@ -17,11 +23,11 @@ Servlet 规范中的监听器：
 使用步骤：
 * 编写一个类实现监听器接口，实现其中的方法
 * 在 `web.xml` 中进行配置
-	```xml
+  ```xml
 	<listener>
 		<listener-class>your.listener.class</listener-class>
 	</listener>
-	```
+  ```
 * 或者使用 `WebListener` 注解
 	* 不需要参数
 * 某个特殊时机发生时，服务器自动调用对应的方法

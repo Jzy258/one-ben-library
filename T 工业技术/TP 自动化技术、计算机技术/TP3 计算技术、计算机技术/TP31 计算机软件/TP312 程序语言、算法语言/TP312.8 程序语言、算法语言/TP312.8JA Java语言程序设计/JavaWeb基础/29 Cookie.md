@@ -1,3 +1,9 @@
+---
+title: '29 Cookie'
+---
+
+# 29 Cookie
+
 每一个 session 对象对应一个 sessionid（Java 中为 `JSESSIONID`），以 cookie 对象的形式存放在浏览器的运行内存中
 
 保存位置：
@@ -48,7 +54,7 @@ cookie 的有效时间：
 `request.getCookies` 方法：接收 cookie，返回 `Cookie[]`
 * 若没有获取到 cookie，则返回 `null` 而非空数组
 * 一般实现：
-	```java
+  ```java
 	Cookie[] cookies = request.getCookies();
 	if (cookies != null) {
 		for (Cookie cookie : cookies) {
@@ -57,7 +63,7 @@ cookie 的有效时间：
 			// ...
 		}
 	}
-	```
+  ```
 * 遍历 `Cookie` 数组时不需要对元素判断是否为 `null`
 
 实现十天内免登录：

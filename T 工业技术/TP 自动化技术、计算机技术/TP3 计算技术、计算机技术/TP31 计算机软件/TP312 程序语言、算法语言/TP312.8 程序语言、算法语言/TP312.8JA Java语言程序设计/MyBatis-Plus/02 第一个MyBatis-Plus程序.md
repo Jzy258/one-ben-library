@@ -1,3 +1,9 @@
+---
+title: '02 第一个MyBatis-Plus程序'
+---
+
+# 02 第一个MyBatis-Plus程序
+
 > module `mybatis-plus-001`
 * **实现步骤**：
 	* 引入依赖 `mybatis-plus-spring-boot4-starter`

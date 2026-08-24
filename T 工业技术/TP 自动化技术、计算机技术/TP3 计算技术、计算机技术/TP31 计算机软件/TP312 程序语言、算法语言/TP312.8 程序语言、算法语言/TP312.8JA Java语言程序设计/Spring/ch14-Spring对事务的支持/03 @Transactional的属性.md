@@ -1,3 +1,9 @@
+---
+title: '03 @Transactional的属性'
+---
+
+# 03 @Transactional的属性
+
 * `propagation`：
 	* **作用**：
 		* 控制事务的传播行为，即当 `a` 方法调用 `b` 方法，且 `a` 和 `b` 都有事务时事务如何传递

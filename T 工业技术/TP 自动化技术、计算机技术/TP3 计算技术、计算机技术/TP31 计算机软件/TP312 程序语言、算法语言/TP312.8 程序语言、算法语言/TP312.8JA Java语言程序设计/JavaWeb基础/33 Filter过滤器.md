@@ -1,3 +1,9 @@
+---
+title: '33 Filter过滤器'
+---
+
+# 33 Filter过滤器
+
 Filter（过滤器）：
 * 将 Servlet 程序看作最终的执行目标
 * 使用 Filter 添加过滤代码，可以添加到 Servlet 执行之前或之后
@@ -11,7 +17,7 @@ Filter（过滤器）：
 	* `doFilter`：用户发送一次对应地址的请求就执行一次
 	* `destroy`：`Filter` 对象被销毁前调用，只调用一次
 * 在 `web.xml` 中配置过滤器
-	```xml
+  ```xml
 	<filter>
 		<filter-name>过滤器名称</filter-name>
 		<filter-class>your.filter.class</filter-class>
@@ -20,7 +26,7 @@ Filter（过滤器）：
 		<filter-name>过滤器名称</filter-name>
 		<url-pattern>/xxx</url-pattern>
 	</filter-mapping>
-	```
+  ```
 * 或者使用注解：`@WebFilter("/xxx")`
 * 在 `doFilter` 中调用 `chain.doFilter`，则执行下一个过滤器
 	* 若不存在下一个过滤器，则执行同路径名的 Servlet

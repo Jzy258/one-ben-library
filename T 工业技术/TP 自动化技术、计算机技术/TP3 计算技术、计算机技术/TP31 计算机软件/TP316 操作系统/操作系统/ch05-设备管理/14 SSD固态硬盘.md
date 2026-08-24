@@ -1,3 +1,9 @@
+---
+title: '14 SSD固态硬盘'
+---
+
+# 14 SSD固态硬盘
+
 原理：
 * 基于闪存（Flash Memory）技术
 * 属于电可擦除 ROM（EEPROM）

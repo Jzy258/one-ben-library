@@ -1,3 +1,9 @@
+---
+title: '11 使用IDEA开发Servlet应用'
+---
+
+# 11 使用IDEA开发Servlet应用
+
 新建工程：
 * 创建一个空工程
 
@@ -19,7 +25,7 @@
 * 在 Servlet 当中的 `service` 方法中编写业务代码
 * 在 `WEB-INF` 目录下新建一个子目录：`lib`（必须全部小写），将连接数据库的驱动 `jar` 包放到 `lib` 目录下
 * 在 `web.xml` 文件中完成注册（请求路径和 Servlet 之间对应起来）
-	```java
+  ```java
 	<?xml version="1.0" encoding="UTF-8"?>
 	
 	<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -38,7 +44,7 @@
 	  </servlet-mapping>
 	  
 	</web-app>
-	```
+  ```
 	* HTML 文件不能放到 WEB-INF 目录里面
 
 IDEA 工具关联 Tomcat 服务器，将 webapp 部署到 Tomcat 服务器中

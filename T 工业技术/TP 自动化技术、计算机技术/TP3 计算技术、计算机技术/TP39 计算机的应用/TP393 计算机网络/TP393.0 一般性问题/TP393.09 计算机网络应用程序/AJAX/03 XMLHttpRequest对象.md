@@ -1,3 +1,9 @@
+---
+title: '03 XMLHttpRequest对象'
+---
+
+# 03 XMLHttpRequest对象
+
 `XMLHttpRequest` 对象：
 * AJAX 的核心对象
 * 用于发送 AJAX 请求并接收服务器返回的数据

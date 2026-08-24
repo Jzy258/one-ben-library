@@ -1,3 +1,9 @@
+---
+title: '16 全局API'
+---
+
+# 16 全局API
+
 * `app.mount(挂载位置)`：
 	* 挂载应用到指定位置
 * `app.unmount()`：
@@ -22,13 +28,13 @@
 	* `globalProperties`：
 		* 全局属性
 		* 解决编译器报错问题：
-			```ts
-declare module 'vue' {
-	interface ComponentCustomProperties {
-		属性名: 属性类型
-	}
-}
-			```
+          ```ts
+          declare module 'vue' {
+        	interface ComponentCustomProperties {
+    		属性名: 属性类型
+        	}
+          }
+          ```
 * `app.directive()`：
 	* 自定义指令
 	* 指定自定义的 `v-xxx` 指令的行为

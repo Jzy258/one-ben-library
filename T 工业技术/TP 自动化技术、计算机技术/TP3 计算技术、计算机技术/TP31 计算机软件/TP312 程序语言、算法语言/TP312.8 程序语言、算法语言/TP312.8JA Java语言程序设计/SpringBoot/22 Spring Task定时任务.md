@@ -1,3 +1,9 @@
+---
+title: '22 Spring Task定时任务'
+---
+
+# 22 Spring Task定时任务
+
 > module `springboot-011`
 * Spring 支持定时任务：
 	* 定义定时任务类，使用 `@Scheduled` 注解

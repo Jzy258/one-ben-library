@@ -1,3 +1,9 @@
+---
+title: '01 MyBatis入门程序'
+---
+
+# 01 MyBatis入门程序
+
 开发步骤：
 * `<packaging>` 为 `jar`
 * 引入 `mybatis` 和 mysql 驱动依赖

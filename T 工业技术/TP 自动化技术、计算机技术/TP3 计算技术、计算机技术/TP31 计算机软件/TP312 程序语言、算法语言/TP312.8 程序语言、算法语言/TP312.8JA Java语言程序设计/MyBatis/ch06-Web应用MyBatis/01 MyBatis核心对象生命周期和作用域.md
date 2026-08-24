@@ -1,3 +1,9 @@
+---
+title: '01 MyBatis核心对象生命周期和作用域'
+---
+
+# 01 MyBatis核心对象生命周期和作用域
+
 `SqlSessionFactoryBuilder`：
 * 只要创建过 `SqlSessionFactory` 就不再需要
 * 方法作用域（作为局部方法变量）

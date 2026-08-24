@@ -1,15 +1,21 @@
+---
+title: '22 Servlet实现部门管理'
+---
+
+# 22 Servlet实现部门管理
+
 第一步：准备数据库
 * 使用 Navicat 连接 MySQL
 * 新建数据库
 * 新建部门表，包括部门编号、部门名称、部门人数等字段
-	```sql
+  ```sql
 	CREATE TABLE `t_dept` (
 	  `deptno` int unsigned NOT NULL AUTO_INCREMENT,
 	  `dname` varchar(255)  NOT NULL,
 	  `empcnt` int NOT NULL,
 	  PRIMARY KEY (`deptno`)
 	);
-	```
+  ```
 * 可以预先插入一些记录以供测试
 
 第二步：准备 HTML 页面

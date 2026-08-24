@@ -1,3 +1,9 @@
+---
+title: '13 Axios'
+---
+
+# 13 Axios
+
 * `axios.create()`：
 	* 创建 `AxiosInstance`，用于自定义配置而不污染全局
 	* `baseURL`：

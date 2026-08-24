@@ -1,3 +1,9 @@
+---
+title: '03 dataSource'
+---
+
+# 03 dataSource
+
 数据源：
 * 为程序提供 `Connection` 对象
 * 数据源都实现了标准数据源接口 `javax.sql.DataSource` 规范

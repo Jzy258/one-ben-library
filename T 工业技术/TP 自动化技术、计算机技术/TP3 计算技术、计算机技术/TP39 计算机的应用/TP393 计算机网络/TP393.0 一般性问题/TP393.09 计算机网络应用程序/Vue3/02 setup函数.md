@@ -1,3 +1,9 @@
+---
+title: '02 setup函数'
+---
+
+# 02 setup函数
+
 * `setup`：==component `User01.vue`==
 	* Vue3 组合式 API 的核心入口函数
 	* Vue 会在**组件初始化**时自动调用 `setup` 函数

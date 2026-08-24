@@ -1,3 +1,9 @@
+---
+title: '12 Servlet对象的生命周期'
+---
+
+# 12 Servlet对象的生命周期
+
 `Servlet` 对象的生命周期由 Tomcat 服务器（Web 容器）负责，JavaWeb 程序员无法干预
 
 我们自己创建的 `Servlet` 对象不受 Web 容器的管理

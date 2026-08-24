@@ -1,3 +1,9 @@
+---
+title: '04 Spring Boot脚手架'
+---
+
+# 04 Spring Boot脚手架
+
 * 脚手架（Scaffold）：预设项目模板
 * Spring Initializr：
 	* 通过填写网页表单生成项目框架

@@ -1,3 +1,9 @@
+---
+title: '24 Bean Validation'
+---
+
+# 24 Bean Validation
+
 * Bean Validation：
 	* **作用**:
 		* 用于校验数据

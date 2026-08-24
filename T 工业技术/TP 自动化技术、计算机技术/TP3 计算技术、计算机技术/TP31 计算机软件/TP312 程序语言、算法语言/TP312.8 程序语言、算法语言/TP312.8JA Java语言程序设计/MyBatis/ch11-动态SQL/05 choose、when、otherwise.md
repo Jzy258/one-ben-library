@@ -1,3 +1,9 @@
+---
+title: '05 choose、when、otherwise'
+---
+
+# 05 choose、when、otherwise
+
 ```sql
 SELECT * FROM t_car
 <where>

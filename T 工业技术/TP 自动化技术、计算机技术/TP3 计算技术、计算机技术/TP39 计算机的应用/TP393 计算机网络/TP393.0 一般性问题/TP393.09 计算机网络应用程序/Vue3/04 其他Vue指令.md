@@ -1,3 +1,9 @@
+---
+title: '04 其他Vue指令'
+---
+
+# 04 其他Vue指令
+
 * `v-if`：
 	* 当 `v-if` 的条件为 `false` 时删除该 DOM 元素
 * `v-show`：

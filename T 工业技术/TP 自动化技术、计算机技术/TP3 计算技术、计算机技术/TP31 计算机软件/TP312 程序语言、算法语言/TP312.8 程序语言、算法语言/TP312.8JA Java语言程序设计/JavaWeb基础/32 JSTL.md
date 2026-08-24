@@ -1,3 +1,9 @@
+---
+title: '32 JSTL'
+---
+
+# 32 JSTL
+
 JSTL（JSP Standard Tag Lib，Java Servlet 页面标准标签库）
 
 作用：进一步使前后端分离，避免 JSP 中出现 Java 代码
@@ -48,7 +54,7 @@ Tomcat 10 之后引入的 jar 包：
 	* `end`：循环变量
 	* `varStatus`：与 `items` 同时出现时，表示变量的状态，有 `count` 属性，表示目前遍历变量计数
 * `choose`：相当于 `if ... else if ... else if ...` 或 `switch`，配合 `when`、`otherwise` 使用
-	```jsp
+  ```jsp
 	<c:choose>
 		<c:when test="">
 			...
@@ -60,5 +66,5 @@ Tomcat 10 之后引入的 jar 包：
 		<c:otherwise>
 		</c:otherwise>
 	</c:choose>
-	```
+  ```
 

@@ -1,3 +1,9 @@
+---
+title: '06 第一个Servlet应用'
+---
+
+# 06 第一个Servlet应用
+
 步骤：
 * 在 webapps 目录下新建一个目录
 * 在 webapp 的根下新建一个目录：WEB-INF
@@ -12,18 +18,18 @@
 	* 必须的
 	* 一个配置文件，描述了请求路径和 Servlet 类之间的对照关系
     - 最好从其他 webapp 中拷贝，最好别手写
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
+      ```xml
+      <?xml version="1.0" encoding="UTF-8"?>
 
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+      <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
 					https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
-version="5.0"
-metadata-complete="true">
+      version="5.0"
+      metadata-complete="true">
 
-</web-app>
-```
+      </web-app>
+      ```
 * 编写一个 Java 程序，必须实现 `Servlet` 接口
 	* `Servlet` 接口不在 JDK 中
     - Servlet.class 是 Oracle 提供的
@@ -34,31 +40,31 @@ metadata-complete="true">
     - Java 源程序的位置无所谓，只需要将 Java 源代码编译之后的 class 文件放到 classes 目录下
 * 编译 Java 源程序
 	* 配置环境变量 `CLASSPATH=.;C:\dev\apache-tomcat-10.0.12\lib\servlet-api.jar`
-```java
-package com.dustbin.servlet;  
+      ```java
+      package com.dustbin.servlet;  
   
-import jakarta.servlet.ServletConfig;  
-import jakarta.servlet.ServletException;  
-import jakarta.servlet.ServletRequest;  
-import jakarta.servlet.ServletResponse;  
+      import jakarta.servlet.ServletConfig;  
+      import jakarta.servlet.ServletException;  
+      import jakarta.servlet.ServletRequest;  
+      import jakarta.servlet.ServletResponse;  
   
-import java.io.IOException;  
-import java.io.PrintWriter;  
+      import java.io.IOException;  
+      import java.io.PrintWriter;  
 
-public class MyServlet implements jakarta.servlet.Servlet {  
+      public class MyServlet implements jakarta.servlet.Servlet {  
   
-    @Override  
-    public void init(ServletConfig servletConfig) throws ServletException {  
+      @Override  
+      public void init(ServletConfig servletConfig) throws ServletException {  
   
-    }  
+      }  
   
-    @Override  
-    public ServletConfig getServletConfig() {  
+      @Override  
+      public ServletConfig getServletConfig() {  
         return null;  
-    }  
+      }  
   
-    @Override  
-	public void service(ServletRequest request, ServletResponse response)
+      @Override  
+    	public void service(ServletRequest request, ServletResponse response)
 		throws ServletException, IOException {
 		// 设置内容的类型为html
 		// 需要在输出流声明前设置
@@ -67,51 +73,51 @@ public class MyServlet implements jakarta.servlet.Servlet {
 	    PrintWriter out = response.getWriter();
 	    // 输出信息（可以为html标签）
 	    out.print("<h1>hello servlet!</h1>");
-	}
+    	}
   
-    @Override  
-    public String getServletInfo() {  
+      @Override  
+      public String getServletInfo() {  
         return "";  
-    }  
+      }  
   
-    @Override  
-    public void destroy() {  
+      @Override  
+      public void destroy() {  
   
-    }  
-}
-```
+      }  
+      }
+      ```
 - 将以上编译之后的 class 文件拷贝到 WEB-INF\classes 目录下
 * 在 web.xml 文件中编写配置信息，让 “请求路径” 和 “Servlet 类名” 关联在一起
 	* 称为在 web.xml 文件中注册 `Servlet` 类
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
+      ```xml
+      <?xml version="1.0" encoding="UTF-8"?>
 
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+      <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
 					https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
-version="5.0"
-metadata-complete="true">
+      version="5.0"
+      metadata-complete="true">
 
-<!-- servlet描述信息 -->
-<!-- 任何一个servlet都对应一个servlet-mapping -->
-<servlet>
-	<!-- 目前随便写 -->
-	<servlet-name>name</servlet-name>
-	<!-- 此处必须是带有包名的全限定类名 -->
-	<servlet-class>com.dustbin.servlet.MyServlet</servlet-class>
-</servlet>
+      <!-- servlet描述信息 -->
+      <!-- 任何一个servlet都对应一个servlet-mapping -->
+      <servlet>
+    	<!-- 目前随便写 -->
+    	<servlet-name>name</servlet-name>
+    	<!-- 此处必须是带有包名的全限定类名 -->
+    	<servlet-class>com.dustbin.servlet.MyServlet</servlet-class>
+      </servlet>
 
-<!-- servlet映射信息 -->
-<servlet-mapping>
-	<!-- 与上面的一致 -->
-	<servlet-name>name</servlet-name>
-	<!-- 这里需要一个路径，必须以 / 开始，目前可以随便写 -->
-	<url-pattern>/foo/bar/buz</url-pattern>
-</servlet-mapping>
+      <!-- servlet映射信息 -->
+      <servlet-mapping>
+    	<!-- 与上面的一致 -->
+    	<servlet-name>name</servlet-name>
+    	<!-- 这里需要一个路径，必须以 / 开始，目前可以随便写 -->
+    	<url-pattern>/foo/bar/buz</url-pattern>
+      </servlet-mapping>
 
-</web-app>
-```
+      </web-app>
+      ```
 * 启动Tomcat服务器，打开浏览器，在浏览器地址栏上输入 URL
 	* URL 路径必须和 web.xml 文件中的 `url-pattern` 一致
     - 注意：浏览器上的请求路径和web.xml文件中的url-pattern的唯一区别就是：浏览器上的请求路径带项目名：/crm

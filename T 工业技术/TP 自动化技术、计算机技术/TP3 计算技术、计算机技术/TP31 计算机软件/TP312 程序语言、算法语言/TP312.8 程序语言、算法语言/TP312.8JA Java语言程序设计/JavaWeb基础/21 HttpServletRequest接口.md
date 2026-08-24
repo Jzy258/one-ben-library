@@ -1,3 +1,9 @@
+---
+title: '21 HttpServletRequest接口'
+---
+
+# 21 HttpServletRequest接口
+
 `HttpServletRequest` 是一个接口，全限定名称是：`jakarta.servlet.http.HttpServletRequest`
 
 `HttpServletRequest` 接口是 `Servlet` 规范的一部分

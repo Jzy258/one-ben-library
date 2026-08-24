@@ -1,3 +1,9 @@
+---
+title: '06 AJAX POST请求'
+---
+
+# 06 AJAX POST请求
+
 将 `open()` 方法的 `method` 参数设为 `"POST"`
 
 在 `send()` 方法中添加参数，格式为：

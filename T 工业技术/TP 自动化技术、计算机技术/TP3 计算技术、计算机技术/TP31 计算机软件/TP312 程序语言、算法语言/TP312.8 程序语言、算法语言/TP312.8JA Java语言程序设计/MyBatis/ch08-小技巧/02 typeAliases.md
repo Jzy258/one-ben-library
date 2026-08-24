@@ -1,3 +1,9 @@
+---
+title: '02 typeAliases'
+---
+
+# 02 typeAliases
+
 `<typeAliases>`：
 * 在 `mybatis-config.xml` 中指定
 * 包含若干 `<typeAlias>`，具有 `type` 和 `alias` 属性

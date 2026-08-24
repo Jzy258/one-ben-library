@@ -1,3 +1,9 @@
+---
+title: '12 AJAX跨域问题'
+---
+
+# 12 AJAX跨域问题
+
 跨域：
 * 在一个域名的网页中请求另一个域名的资源
 * 以下请求方式不存在问题：
@@ -10,22 +16,22 @@
 
 解决方案 1：设置响应头
 * 在请求的资源中设置允许跨域请求：
-	```java
+  ```java
 	response.setHeader("Access-Control-Allow-Origin", "允许访问的源");
-	```
+  ```
 	* 允许访问的源可以使用通配符
 
 解决方案 2：jsonp
 * 不是真正的 AJAX 请求，但可以实现局部刷新的效果
 * 原理：将后端响应作为 JS 代码引入并解析执行
 * 只支持 GET 请求
-	```html
+  ```html
 	<!-- 前端页面 -->
 	...
 	<script src="访问后端程序的URL"></script>
 	...
-	```
-	```java
+  ```
+```java
 	/* 后端资源 */
 	...
 	@Override
@@ -34,9 +40,9 @@
 		out.print("引入的JS代码");
 	}
 	...
-	```
+```
 * 动态实现：
-	```html
+  ```html
 	<!-- 前端 -->
 	...
 	<script type="text/javascript">
@@ -50,17 +56,17 @@
 		}
 	</script>
 	...
-	```
-	```java
+  ```
+```java
 	/* 后端 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String func = request.getParameter("func");
 		response.getWriter().print(func + "({JSON})")
 	}
-	```
+```
 * jQuery 封装版：
-	```html
+  ```html
 	<script type="text/javascript">
 		$(function() {
 			$("#btn").click(function () {
@@ -78,15 +84,15 @@
 			})
 		})
 	</script>
-	```
+  ```
 	* jQuery 会发送请求，并附加 `callback=jQuery#####_#####` 参数，表示 jQuery 自动生成的函数
-	```java
-	/* 后端 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      ```java
+    	/* 后端 */
+    	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String callback = request.getParameter("callback");
 		response.getWriter().print(callback + "({JSON})")
-	}
-	```
+    	}
+      ```
 	* jQuery 会自动调用 `callback` 所指函数，并调用指定的回调函数
 
 解决方案 3：代理机制

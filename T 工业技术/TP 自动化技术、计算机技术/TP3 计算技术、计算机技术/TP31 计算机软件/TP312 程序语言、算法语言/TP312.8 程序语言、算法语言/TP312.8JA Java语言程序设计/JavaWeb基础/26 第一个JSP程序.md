@@ -1,3 +1,9 @@
+---
+title: '26 第一个JSP程序'
+---
+
+# 26 第一个JSP程序
+
 在 `WEB-INF` 外创建一个 `index.jsp` 文件，其中为空白
 上述文件部署后，启动服务器，使用浏览器访问该地址：
 * Tomcat 将 `.jsp` 文件翻译生成 `_jsp.java` 文件，并自动编译生成 `.class` 文件
@@ -28,9 +34,9 @@ JSP 基础语法：
 * JSP 中直接编写的文字会自动翻译为 Java 的 `out.write()` 语句，将文字内容作为普通字符串打印在网页上
 * 解决中文乱码问题：
 	* 在 JSP 文件头部编写 `page` 指令：
-		```jsp
+      ```jsp
 		<%@page contentType="text/html;charset=UTF-8"%>
-		```
+      ```
 		* 设置页面的字符编码为 UTF-8
 * `<% Java语句 %>`：脚本块
 	* 相当于将 Java 程序直接写入 `Servlet` 的 `service` 方法中

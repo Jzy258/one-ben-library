@@ -1,3 +1,9 @@
+---
+title: '09 AJAX乱码问题'
+---
+
+# 09 AJAX乱码问题
+
 Tomcat 10 不会出现乱码问题
 
 可能出现乱码：
@@ -6,10 +12,10 @@ Tomcat 10 不会出现乱码问题
 
 对于老版本 Tomcat：
 * GET 请求服务器响应数据乱码：
-	```java
+  ```java
 	response.setContentType("text/html;charset=UTF-8");
-	```
+  ```
 * POST 请求服务器接收数据乱码：
-	```java
+  ```java
 	request.setCharacterEncoding("UTF-8");
-	```
+  ```

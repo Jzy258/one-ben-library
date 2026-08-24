@@ -1,3 +1,9 @@
+---
+title: '15 ServletContext'
+---
+
+# 15 ServletContext
+
 `ServletContext`（Servlet 上下文对象）：
 * `Servlet` 对象的环境
 - 在同一个 webapp 中，所有 `Servlet` 对象共享同一个 `ServletContext` 对象
@@ -9,16 +15,16 @@
 * `String getInitParameter(String name)`：通过初始化参数的 `name` 获取 `value`
 * `Enumeration<String> getInitParameterNames()`：获取所有的初始化参数的 `name`
 * 以上两个方法获取以下信息：
-	```xml
-<context-param>
+  ```xml
+  <context-param>
 	<param-name>pageSize</param-name>
 	<param-value>10</param-value>
-</context-param>
-<context-param>
+  </context-param>
+  <context-param>
 	<param-name>startIndex</param-name>
 	<param-value>0</param-value>
-</context-param>
-	```
+  </context-param>
+  ```
 	* 以上的配置信息属于应用级的配置信息（项目共享的配置信息）
 	* Servlet 级配置信息配置在 `<servlet>` 标签中即可，使用 `ServletConfig` 对象获取
 * `String getContextPath()`：获取应用的根路径

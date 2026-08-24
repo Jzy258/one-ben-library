@@ -1,3 +1,9 @@
+---
+title: '08 基于XML的数据交换'
+---
+
+# 08 基于XML的数据交换
+
 后端 Servlet 中设置响应内容类型为 XML：
 ```java
 response.setContentType("text/xml");

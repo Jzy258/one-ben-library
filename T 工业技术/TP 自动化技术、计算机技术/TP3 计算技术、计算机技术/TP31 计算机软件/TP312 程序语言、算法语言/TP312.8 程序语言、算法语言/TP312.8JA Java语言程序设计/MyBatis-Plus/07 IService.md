@@ -1,3 +1,9 @@
+---
+title: '07 IService'
+---
+
+# 07 IService
+
 * `IService` 接口：
 	* MyBatis-Plus 为 Service 层提供的核心接口
 	* 继承自 `ServiceImpl` 类

@@ -1,3 +1,9 @@
+---
+title: '02 Spring的7个模块'
+---
+
+# 02 Spring的7个模块
+
 Spring 的 7 个模块：
 * 基础核心：Spring Core Container：
 	* 实现 IoC 功能

@@ -1,3 +1,9 @@
+---
+title: '04 MyBatis-Plus常用配置'
+---
+
+# 04 MyBatis-Plus常用配置
+
 * 基础配置：
 	* `mybatis-plus.mapper-locations=classpath*:/mapper/**/*.xml`：
 		* 指定 Mapper.xml 的位置

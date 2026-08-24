@@ -1,3 +1,9 @@
+---
+title: '01 声明Bean的注解'
+---
+
+# 01 声明Bean的注解
+
 声明 Bean 的注解：
 * `@Component`
 * `@Controller`

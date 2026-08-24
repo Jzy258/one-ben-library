@@ -1,3 +1,9 @@
+---
+title: '04 AJAX GET请求'
+---
+
+# 04 AJAX GET请求
+
 发送 AJAX GET 请求的步骤：
 * 创建 `XMLHttpRequest` 对象
 * 注册回调函数 `onreadystatechange`，一般进行两层嵌套 `if` 检查：

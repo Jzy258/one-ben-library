@@ -1,3 +1,9 @@
+---
+title: '02 Spring解决循环依赖的机制'
+---
+
+# 02 Spring解决循环依赖的机制
+
 `DefaultSingletonBeanFactory`：
 * 三级缓存：
 	* `singletonObjects` 属性：
@@ -9,19 +15,19 @@
 		* 三级缓存，用于缓存 Bean 工厂对象
 * `addSingletonFactory` 方法：
 	* 添加单例 Bean 工厂
-```java
-protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory) {  
-	Assert.notNull(singletonFactory, "Singleton factory must not be null");
-	/* 提前暴露Bean工厂 */
-	this.singletonFactories.put(beanName, singletonFactory);  
-	/* 互斥地将早期Bean从二级缓存中移除 */
-	this.earlySingletonObjects.remove(beanName);  
-	this.registeredSingletons.add(beanName);  
-}
-```
+      ```java
+      protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory) {  
+    	Assert.notNull(singletonFactory, "Singleton factory must not be null");
+    	/* 提前暴露Bean工厂 */
+    	this.singletonFactories.put(beanName, singletonFactory);  
+    	/* 互斥地将早期Bean从二级缓存中移除 */
+    	this.earlySingletonObjects.remove(beanName);  
+    	this.registeredSingletons.add(beanName);  
+      }
+      ```
 * `getSingleton` 方法：
-```java
-protected @Nullable Object getSingleton(String beanName, boolean allowEarlyReference) {  
+  ```java
+  protected @Nullable Object getSingleton(String beanName, boolean allowEarlyReference) {  
 	/* 尝试从一级缓存获取Bean */
     Object singletonObject = this.singletonObjects.get(beanName);  
     /* 无法从一级缓存获取Bean */
@@ -63,8 +69,8 @@ protected @Nullable Object getSingleton(String beanName, boolean allowEarlyRefer
 		}  
 	}  
     return singletonObject;  
-}
-```
+  }
+  ```
 
 流程（以 `Employee` 和 `Employer` 循环依赖为例）：
 * 创建 `Employee` 实例：

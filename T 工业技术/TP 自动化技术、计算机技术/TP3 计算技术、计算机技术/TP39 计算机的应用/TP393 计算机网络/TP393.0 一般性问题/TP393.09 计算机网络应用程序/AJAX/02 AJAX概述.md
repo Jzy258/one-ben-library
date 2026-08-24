@@ -1,3 +1,9 @@
+---
+title: '02 AJAX概述'
+---
+
+# 02 AJAX概述
+
 AJAX（Asyncronous Javascript And Xml）：
 * 可以让浏览器发送异步请求
 * 本质是 JS 代码

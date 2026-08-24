@@ -1,3 +1,9 @@
+---
+title: '01 insert'
+---
+
+# 01 insert
+
 `SqlSession#insert(SQL语句ID, 要插入的对象)`：
 * SQL 语句 ID 为 `XxxMapper.xml` 中定义的 SQL 语句
 	* SQL 语句中使用 `#{}` 作为占位符

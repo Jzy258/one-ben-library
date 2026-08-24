@@ -1,3 +1,9 @@
+---
+title: '06 Spring Boot核心注解'
+---
+
+# 06 Spring Boot核心注解
+
 > module `spring-boot003`
 * Spring Boot 框架两大机制：
 	* 启动器

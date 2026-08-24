@@ -1,3 +1,9 @@
+---
+title: '04 select'
+---
+
+# 04 select
+
 查询一个：
 * `SqlSession#selectOne`
 

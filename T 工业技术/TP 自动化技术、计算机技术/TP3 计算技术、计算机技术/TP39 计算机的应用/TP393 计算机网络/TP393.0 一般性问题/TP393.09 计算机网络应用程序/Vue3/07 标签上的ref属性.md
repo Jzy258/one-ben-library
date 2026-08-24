@@ -1,3 +1,9 @@
+---
+title: '07 标签上的ref属性'
+---
+
+# 07 标签上的ref属性
+
 * `ref`：==component `User07.vue`==
 	* 类似 DOM 中的 `id`
 	* **解决问题**：

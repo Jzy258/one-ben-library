@@ -1,3 +1,9 @@
+---
+title: '12 Pinia'
+---
+
+# 12 Pinia
+
 * Pinia：==component `Count.vue`==
 	* **作用**：
 		* 实现数据在多个不相关的组件中共享

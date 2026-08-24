@@ -1,3 +1,9 @@
+---
+title: '06 foreach'
+---
+
+# 06 foreach
+
 ```sql
 SELECT * FROM t_car WHERE id IN(
 	<foreach collection="array" item="id" separator=",">

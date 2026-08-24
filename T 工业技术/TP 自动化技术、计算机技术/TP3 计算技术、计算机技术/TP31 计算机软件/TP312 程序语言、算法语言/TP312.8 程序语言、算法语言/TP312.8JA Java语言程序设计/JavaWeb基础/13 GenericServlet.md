@@ -1,3 +1,9 @@
+---
+title: '13 GenericServlet'
+---
+
+# 13 GenericServlet
+
 对于一个 `Servlet` 类，我们只需要 `service` 方法，其他方法大部分情况下不需要使用
 
 适配器设计模式 Adapter：
