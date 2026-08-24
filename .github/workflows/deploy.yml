@@ -1,10 +1,10 @@
 # 构建 VitePress 站点并部署到 GitHub Pages
-# 每次 push 到 main 分支时自动触发
+# 每次 push 到 master 分支时自动触发（仓库默认分支为 master）
 name: Deploy VitePress site to Pages
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
 
 permissions:
