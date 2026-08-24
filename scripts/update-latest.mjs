@@ -58,23 +58,22 @@ function latestTopicLink() {
     const m = statSync(file).mtimeMs
     if (!best || m > best.m) best = { m, link }
   }
-  return best ? best.link : '/T 工业技术/'
+  return best ? best.link : '/' + (TOP_DIRS[0] || 'T 工业技术') + '/'
 }
 
 const link = latestTopicLink()
 
-// 直接更新 index.md 中「开始阅读」按钮的链接（不经中间页，避免闪现）
+// 直接更新 index.md 中「最近更新」与「分类导航」按钮的链接（不经中间页，避免闪现）
 const indexPath = join(LIBRARY_ROOT, 'index.md')
 const indexContent = readFileSync(indexPath, 'utf8')
-const updated = indexContent.replace(
-  /(text: 开始阅读\r?\n\s+link: )[^\r\n]*/,
-  `$1${link}`
-)
+const updated = indexContent
+  .replace(/(text: 最近更新\r?\n\s+link: )[^\r\n]*/, `$1${link}`)
+  .replace(/(text: 分类导航\r?\n\s+link: )[^\r\n]*/, `$1/${TOP_DIRS[0] || 'T 工业技术'}/`)
 if (updated !== indexContent) {
   writeFileSync(indexPath, updated, 'utf8')
-  console.log(`✓ index.md「开始阅读」→ ${link}`)
+  console.log(`✓ index.md「最近更新」→ ${link}`)
 } else {
-  console.log('⚠ index.md 未找到「开始阅读」的 link 行')
+  console.log('⚠ index.md 未找到「最近更新」的 link 行')
 }
 
 // 清理不再需要的 latest.md（此前方案遗留）

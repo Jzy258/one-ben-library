@@ -1,4 +1,7 @@
 import { defineConfig } from 'vitepress'
+import { readdirSync } from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { buildSidebar } from './buildSidebar.mjs'
 
 // 壹苯图书馆 · VitePress 配置
@@ -7,6 +10,20 @@ import { buildSidebar } from './buildSidebar.mjs'
 // GitHub Pages 项目页 URL 带仓库名前缀（如 /library/），由部署流水线注入；
 // 本地预览时默认为 /
 const base = process.env.VITEPRESS_BASE || '/'
+
+// 动态检测顶层分类目录：兼容完整名 `T 工业技术`（本地）与 CI 压缩名 `T`
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const CLASS_DIR_RE = /^[A-Z]{1,3}(?:\d[\d.]*[A-Z]*)?\s/
+const SHORT_RE = /^[A-Z]{1,3}(?:\d[\d.]*[A-Z]*)?$/
+const TOP_DIR =
+  readdirSync(path.join(__dirname, '..'), { withFileTypes: true })
+    .filter(
+      (d) =>
+        d.isDirectory() &&
+        !d.name.startsWith('.') &&
+        (CLASS_DIR_RE.test(d.name) || SHORT_RE.test(d.name))
+    )
+    .map((d) => d.name)[0] || 'T 工业技术'
 
 export default defineConfig({
   base,
@@ -39,7 +56,7 @@ export default defineConfig({
     logo: '/logo.svg',
     nav: [
       { text: '首页', link: '/' },
-      { text: '<i class="bi bi-book-half"></i> T 工业技术', link: '/T 工业技术/' }
+      { text: '<i class="bi bi-book-half"></i> T 工业技术', link: '/' + TOP_DIR + '/' }
     ],
 
     // 自动侧边栏：扫描中图分类目录树生成（见 buildSidebar.mjs）

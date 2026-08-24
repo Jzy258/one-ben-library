@@ -19,8 +19,6 @@ concurrency:
 
 jobs:
   build:
-    # 用 Windows runner：笔记目录深 + 中文名导致页面 chunk 文件名超过 Linux ext4
-    # 的 255 字节限制（ENAMETOOLONG）；Windows NTFS 按 255 字符计算足够。
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -45,6 +43,13 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      # 关键：构建前把分类目录压缩为分类号（`T 工业技术`→`T` 等），
+      # 使 VitePress 生成的 URL/chunk 名/哈希全部基于短路径，规避：
+      #  - Linux/tar 的 255 字节文件名限制（ENAMETOOLONG）
+      #  - GitHub Pages artifact 的路径长度限制
+      - name: Shorten class dirs
+        run: node scripts/rename-class-dirs.mjs
 
       - name: Build
         run: npm run build

@@ -6,8 +6,24 @@ import { fileURLToPath } from 'node:url'
 
 // library 仓库根目录（本文件位于 <root>/scripts/ 下）
 export const LIBRARY_ROOT = fileURLToPath(new URL('..', import.meta.url))
-// 中图分类法顶层目录（后续新增其他大类时，可扩展为数组）
-export const TOP_DIRS = ['T 工业技术']
+
+// 需跳过的非内容目录（构建产物/配置/依赖等）
+const SKIP_DIRS = new Set([
+  '.git', '.github', '.obsidian', '.vitepress',
+  'node_modules', 'public', 'scripts', 'dist', 'docs'
+])
+
+// 中图分类法顶层目录：动态扫描根目录（兼容完整名 `T 工业技术` 与 CI 压缩名 `T`）
+export const TOP_DIRS = readdirSync(LIBRARY_ROOT, { withFileTypes: true })
+  .filter(
+    (d) =>
+      d.isDirectory() &&
+      !d.name.startsWith('.') &&
+      !SKIP_DIRS.has(d.name) &&
+      // 内容目录：中图分类名（如 `T 工业技术`）或分类号短名（如 `T`）
+      (/^[A-Z]{1,3}(?:\d[\d.]*[A-Z]*)?\s/.test(d.name) || /^[A-Z]{1,3}(?:\d[\d.]*[A-Z]*)?$/.test(d.name))
+  )
+  .map((d) => d.name)
 
 // 目录是否直接包含 md 内容（不含 index.md 与隐藏文件）
 export function hasDirectMd(dir) {
