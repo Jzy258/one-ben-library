@@ -19,7 +19,9 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # 用 Windows runner：笔记目录深 + 中文名导致页面 chunk 文件名超过 Linux ext4
+    # 的 255 字节限制（ENAMETOOLONG）；Windows NTFS 按 255 字符计算足够。
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
