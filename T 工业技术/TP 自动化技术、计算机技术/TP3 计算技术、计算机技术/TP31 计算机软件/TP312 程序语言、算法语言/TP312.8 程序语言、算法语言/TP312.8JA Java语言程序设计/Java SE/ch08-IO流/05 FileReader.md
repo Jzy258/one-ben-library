@@ -1,3 +1,9 @@
+---
+title: '05 FileReader'
+---
+
+# 05 FileReader
+
 * 文件字符输入流
 * 常用构造方法：
 * `FileReader(String fileName)`

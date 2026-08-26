@@ -1,3 +1,9 @@
+---
+title: '07 Math类'
+---
+
+# 07 Math类
+
 * `java.lang.Math`
 * `PI`：圆周率
 * `static Number abs(Number a)`：绝对值

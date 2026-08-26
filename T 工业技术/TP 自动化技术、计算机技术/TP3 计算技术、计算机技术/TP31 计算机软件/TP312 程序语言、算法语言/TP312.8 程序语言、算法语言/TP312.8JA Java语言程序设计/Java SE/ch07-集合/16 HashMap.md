@@ -1,3 +1,9 @@
+---
+title: '16 HashMap'
+---
+
+# 16 HashMap
+
 * 哈希表
 	* `key` 部分无序不可重复
 	* 添加的 `key` 重复时，`value` 会覆盖

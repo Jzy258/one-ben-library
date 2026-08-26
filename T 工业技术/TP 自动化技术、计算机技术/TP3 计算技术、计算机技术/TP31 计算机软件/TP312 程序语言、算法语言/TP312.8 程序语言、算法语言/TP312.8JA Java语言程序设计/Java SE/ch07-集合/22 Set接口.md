@@ -1,3 +1,9 @@
+---
+title: '22 Set接口'
+---
+
+# 22 Set接口
+
 * HashSet
 	* `Set` 接口继承 `Collection`，没有任何新增任何方法
 	* 无序不可重复

@@ -1,3 +1,9 @@
+---
+title: '02 获取 Class'
+---
+
+# 02 获取 Class
+
 * 获取 `Class` 对象的方式：
 * 调用 `Object` 类的 `getClass()` 方法
 * 使用 `类.class` 语法

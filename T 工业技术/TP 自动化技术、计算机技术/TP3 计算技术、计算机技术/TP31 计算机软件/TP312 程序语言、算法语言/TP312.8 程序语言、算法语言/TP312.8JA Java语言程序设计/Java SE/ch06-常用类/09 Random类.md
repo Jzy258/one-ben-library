@@ -1,3 +1,9 @@
+---
+title: '09 Random类'
+---
+
+# 09 Random类
+
 * 用于生成随机数
 * `int nextInt()`：生成范围 \[-2147483648, 2147483647] 的随机整数
 * `int nextInt(int bound)`：生成范围 \[0, bound) 的随机整数

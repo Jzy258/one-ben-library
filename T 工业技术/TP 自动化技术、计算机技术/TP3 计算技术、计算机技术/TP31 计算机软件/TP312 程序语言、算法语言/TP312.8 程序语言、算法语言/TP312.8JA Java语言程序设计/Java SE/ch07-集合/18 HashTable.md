@@ -1,3 +1,9 @@
+---
+title: '18 HashTable'
+---
+
+# 18 HashTable
+
 * 底层：哈希表
 * 线程安全的，方法都被 `synchronized` 修饰；使用较少，保证线程安全有其他方式
 * 初始化容量：11

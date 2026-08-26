@@ -1,3 +1,9 @@
+---
+title: '02 StringBuffer与StringBuilder'
+---
+
+# 02 StringBuffer与StringBuilder
+
 * 可变长度字符串
 	* `StringBuffer` 对方法添加了同步锁，是线程安全的，但效率比 `StringBuilder` 低
 	* `StringBuilder` 和 `StringBuffer` 都实现了 `Comparable`、`CharSequence`、`Appendable` 接口，继承了 `AbstractStringBuilder` 抽象类

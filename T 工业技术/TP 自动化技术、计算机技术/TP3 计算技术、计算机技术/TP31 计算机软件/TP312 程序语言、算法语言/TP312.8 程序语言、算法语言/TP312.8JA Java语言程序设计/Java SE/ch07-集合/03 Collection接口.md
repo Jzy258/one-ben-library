@@ -1,3 +1,9 @@
+---
+title: '03 Collection接口'
+---
+
+# 03 Collection接口
+
 * 通用方法
 	* `boolean add(E e)`：向集合中添加元素
 	* 自动装箱

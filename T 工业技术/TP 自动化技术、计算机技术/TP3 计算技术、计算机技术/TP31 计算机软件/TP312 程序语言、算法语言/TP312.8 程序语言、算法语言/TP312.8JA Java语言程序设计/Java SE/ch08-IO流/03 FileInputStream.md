@@ -1,3 +1,9 @@
+---
+title: '03 FileInputStream'
+---
+
+# 03 FileInputStream
+
 * 文件字节输入流，可以读取任何文件
 * 常用构造方法：
 * `FileInputStream(String name)`：创建一个文件字节输入流对象，参数是文件的路径

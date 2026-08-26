@@ -1,3 +1,9 @@
+---
+title: '13 IntelliJ IDEA工具的使用'
+---
+
+# 13 IntelliJ IDEA工具的使用
+
 * `~` 代表 Windows 当前用户的主目录
 * IDEA 会自动保存、自动编译
 * 常用快捷键：

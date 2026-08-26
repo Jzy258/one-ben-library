@@ -1,4 +1,4 @@
-# SpringBoot
+# Spring Boot
 
 - [01 认识Spring Boot](./01%20%E8%AE%A4%E8%AF%86Spring%20Boot.md)
 - [02 第一个Spring Boot程序](./02%20%E7%AC%AC%E4%B8%80%E4%B8%AASpring%20Boot%E7%A8%8B%E5%BA%8F.md)

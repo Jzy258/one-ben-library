@@ -1,3 +1,9 @@
+---
+title: '07 第一个Java程序'
+---
+
+# 07 第一个Java程序
+
 * path 环境变量
 	* 环境变量 path：
 	* 右击 "此电脑" -> 属性 -> 高级系统设置 -> Path
@@ -8,13 +14,13 @@
 		* linux：“:”（冒号）
 * 编写第一个 Java 程序
 	* 在硬盘的任何位置新建一个 Java 源文件，起名：HelloWorld.java
-	```java
-	public class HelloWorld {
-		public static void main(String[] args) {
-			System.out.println("Hello world!");
-		}
-	}
-	```
+      ```java
+      public class HelloWorld {
+  	public static void main(String[] args) {
+		System.out.println("Hello world!");
+  	}
+      }
+      ```
 	* `()`、`{}`、`[]`、`""` 最好成对写
 	* 编译第一个 Java 程序：
 	* 使用 `javac` 命令，首先确保 `javac` 命令能用

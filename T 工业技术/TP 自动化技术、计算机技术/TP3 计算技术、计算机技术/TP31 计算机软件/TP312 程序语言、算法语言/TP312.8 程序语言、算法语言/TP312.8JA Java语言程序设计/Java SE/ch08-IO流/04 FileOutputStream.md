@@ -1,3 +1,9 @@
+---
+title: '04 FileOutputStream'
+---
+
+# 04 FileOutputStream
+
 * 文件字节输出流
 * 常用构造方法：
 * `FileOutputStream(String name)`：创建输出流，先将文件清空，再不断写入
@@ -15,16 +21,16 @@
 * （Java7）`try-with-resources`（资源自动关闭）：
 * 凡是实现了 `AutoCloseable` 接口的流都可以使用 `try-with-resources` 自动关闭
 * 语法：
-```java
-try (
+  ```java
+  try (
 	声明的流;
 	声明的流;
 	声明的流;
-...
-) {
+  ...
+  ) {
 	...
-} catch (Exception e) {
+  } catch (Exception e) {
 	...
-}
-```
+  }
+  ```
 * `FileOutputStream` 不需要 `flush()`，因为 `FileOutputStream` 没有重写 `flush()` 方法，但重写了 `close()` 方法进行了一些操作，如关闭 `channel` 等；而在父类 `OutputStream` 中，`close()` 和 `flush()` 的实现均为空

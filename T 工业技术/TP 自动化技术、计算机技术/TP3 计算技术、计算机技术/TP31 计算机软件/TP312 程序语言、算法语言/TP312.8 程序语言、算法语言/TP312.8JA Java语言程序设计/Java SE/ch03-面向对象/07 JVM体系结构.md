@@ -1,3 +1,9 @@
+---
+title: '07 JVM体系结构'
+---
+
+# 07 JVM体系结构
+
 * JVM 体系结构
 	* JVM 对应一套规范（Java 虚拟机规范），可以有不同的实现
 	* HotSpot：Oracle 开发，最常用的虚拟机实现，默认的 Java 虚拟机，默认包含在 Oracle JDK 和 OpenJDK 中

@@ -1,3 +1,9 @@
+---
+title: '06 Java8的新日期API'
+---
+
+# 06 Java8的新日期API
+
 * java.time 包
 	* Java 8 的新日期 API 是线程安全的
 	* `java.time.LocalDate`、`java.time.LocalTime`、`java.time.LocalDateTime`：日期、时间、日期时间

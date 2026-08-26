@@ -1,3 +1,9 @@
+---
+title: '18 Object类'
+---
+
+# 18 Object类
+
 * `java.lang.Object`
 * `Object` 是所有类的超类
 * API：应用程序编程接口

@@ -1,3 +1,9 @@
+---
+title: '15 Map类'
+---
+
+# 15 Map类
+
 * `V put(K key, V value)`：添加键值对
 * `void putAll(Map<? extends K,? extends V> m)`：添加多个键值对
 * `V get(Object key)`：通过`key`获取 `value`

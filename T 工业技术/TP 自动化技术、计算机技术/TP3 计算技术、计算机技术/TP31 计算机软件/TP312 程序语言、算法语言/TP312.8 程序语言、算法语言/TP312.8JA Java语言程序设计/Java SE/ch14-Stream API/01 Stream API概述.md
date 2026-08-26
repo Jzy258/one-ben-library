@@ -1,3 +1,9 @@
+---
+title: '01 Stream API概述'
+---
+
+# 01 Stream API概述
+
 * （Java 8）什么是 Stream API
 	* Java 语言引入了一个全新的流式 Stream API，把真正的函数式编程风格运用到 Java 语言中，可以更方便地操作集合，允许开发人员在不改变原始数据源的情况下操作集合，使代码更加简洁、易读和可维护
 	* 使用 Stream API 对集合数据进行操作类似于使用 SQL 执行的数据库查询，也可以使用 Stream API 来并行执行的操作

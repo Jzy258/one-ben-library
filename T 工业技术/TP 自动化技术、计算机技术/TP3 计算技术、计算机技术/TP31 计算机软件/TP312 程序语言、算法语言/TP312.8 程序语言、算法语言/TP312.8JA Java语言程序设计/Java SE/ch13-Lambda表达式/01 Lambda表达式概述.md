@@ -1,24 +1,30 @@
+---
+title: '01 Lambda表达式概述'
+---
+
+# 01 Lambda表达式概述
+
 * Lambda 表达式的引入
 	* （JDK1.8）
 	* 可以取代大部分的匿名内部类，尤其在集合的遍历和其他集合操作中，可以极大地优化代码结构
 	* 实现对 `List` 集合的 “降序” 排序操作：
 	* 使用匿名内部类实现
-	```java
-	List<Integer> list = Arrays.asList(3, 6, 1, 7, 2, 5, 4);
-	Collections.sort(list, new Comparator<Integer>() {
-		@Override
-		public int compare(Integer o1, Integer o2) {
-			return o2 - o1;
-		}
-	});
-	System.out.println("排序后：" + list);
-	```
+      ```java
+      List<Integer> list = Arrays.asList(3, 6, 1, 7, 2, 5, 4);
+      Collections.sort(list, new Comparator<Integer>() {
+  	@Override
+  	public int compare(Integer o1, Integer o2) {
+		return o2 - o1;
+  	}
+      });
+      System.out.println("排序后：" + list);
+      ```
 	* 使用 Lambda 表达式实现：
-	```java
-	List<Integer> list = Arrays.asList(3, 6, 1, 7, 2, 5, 4);
-	Collections.sort(list, (o1, o2) -> o2 - o1);
-	System.out.println("排序后：" + list);
-	```
+      ```java
+      List<Integer> list = Arrays.asList(3, 6, 1, 7, 2, 5, 4);
+      Collections.sort(list, (o1, o2) -> o2 - o1);
+      System.out.println("排序后：" + list);
+      ```
 * 函数式编程思想概述
 	* 在 Java 语言中面向对象（OOP）编程就是一切，但是随着 Python 和 Scala 等语言的崛起和新技术的挑战，Java 也做出调整，不但支持 OOP 还支持 OOF（面向函数编程）
 	* 引入 Lambda 表达式之后，Java 语言也开始支持函数式编程，但是 Lambda 表达式不是 Java 语言最早使用的，目前 C++、C#、Python、Scala 等语言都支持 Lambda 表示
@@ -32,24 +38,24 @@
 	* 函数式接口：一个接口中有且只有一个抽象方法
 	* 如果在接口上声明 `@FunctionalInterface` 注解，编译器就会按照函数式接口的定义来要求该接口，也就是该接口中有且只能定义一个抽象方法
 	* 函数式接口允许在抽象方法外定义一个或多个默认方法
-	```java
-	@FunctionalInterface
-	public interface Flyable {
-		void showFly();
-	  default void show() {
-	        System.out.println("（JDK1.8）接口可以定义默认方法和静态方法");
-	    }
-	}
+      ```java
+      @FunctionalInterface
+      public interface Flyable {
+  	void showFly();
+      default void show() {
+        System.out.println("（JDK1.8）接口可以定义默认方法和静态方法");
+      }
+      }
 
-	public class Test01 {
-		public static void main(String[] args) {
-			Flyable flyable = () -> {
-	      System.out.println("小鸟自由自在的飞翔");
-	    };
-	    flyable.showFly();
-	  }
-	}
-	```
+      public class Test01 {
+  	public static void main(String[] args) {
+		Flyable flyable = () -> {
+      System.out.println("小鸟自由自在的飞翔");
+      };
+      flyable.showFly();
+      }
+      }
+      ```
 	* 只要保证接口中有且只有一个抽象方法，即使接口中没有使用 `@FunctionalInterface` 注解标注，该接口也属于函数式接口
 * Lambda 表达式和匿名内部类
 	* 所需类型不同：

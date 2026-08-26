@@ -1,3 +1,9 @@
+---
+title: '21 TreeMap'
+---
+
+# 21 TreeMap
+
 * `TreeMap` 底层：红黑树
 * `TreeMap` 和 `HashMap` 用法一样，需要 `key` 排序时，可以使用 `TreeMap`
 * `TreeMap` 的 `key` 不能是 `null`

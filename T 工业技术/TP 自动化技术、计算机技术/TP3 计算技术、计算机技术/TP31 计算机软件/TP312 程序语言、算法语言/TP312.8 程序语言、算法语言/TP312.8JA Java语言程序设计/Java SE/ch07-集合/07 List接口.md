@@ -1,3 +1,9 @@
+---
+title: '07 List接口'
+---
+
+# 07 List接口
+
 	* 有序可重复
 * 常用方法
 	* `void add(int index, E element)`：在指定下标处添加元素

@@ -1,3 +1,9 @@
+---
+title: '12 package和import'
+---
+
+# 12 package和import
+
 * package 包机制
 	* 作用：便于代码管理
 	* `package` 语句只能在代码的第一行（除注释外）

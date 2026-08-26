@@ -1,3 +1,9 @@
+---
+title: '02 Collection的继承结构'
+---
+
+# 02 Collection的继承结构
+
 * `Collection`：所有以单个形式存储元素的集合的接口
 * `Iterable`：所有的`Collection`都是可以迭代（遍历）的
 * `Iterator<T> iterator()`：迭代器，用于遍历集合

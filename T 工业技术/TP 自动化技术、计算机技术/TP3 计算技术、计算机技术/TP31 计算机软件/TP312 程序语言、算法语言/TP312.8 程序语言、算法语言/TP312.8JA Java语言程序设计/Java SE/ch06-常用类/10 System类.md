@@ -1,3 +1,9 @@
+---
+title: '10 System类'
+---
+
+# 10 System类
+
 * 常用属性
 	* `static final PrintStream err`：标准错误输出流，输出红色字体
 	* `static final InputStream in`：标准输入流

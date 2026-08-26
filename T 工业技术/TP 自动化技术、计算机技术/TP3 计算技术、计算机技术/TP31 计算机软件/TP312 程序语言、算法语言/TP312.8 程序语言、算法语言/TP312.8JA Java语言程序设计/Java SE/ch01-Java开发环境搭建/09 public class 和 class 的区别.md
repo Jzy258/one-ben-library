@@ -1,3 +1,9 @@
+---
+title: '09 public class 和 class 的区别'
+---
+
+# 09 public class 和 class 的区别
+
 * 一个 java 源文件中可以定义多个 class
 * 编译之后，每个 class 都会对应生成一个 .class 字节码文件
 * public class 只能定义 1 或 0 个

@@ -1,3 +1,9 @@
+---
+title: '05 JUnit单元测试'
+---
+
+# 05 JUnit单元测试
+
 * 单元：一个项目的每一个部分
 * 需要引入 JUnit 框架的 jar 包
 * 单元测试类（测试用例）：`XxxTest`
@@ -8,9 +14,9 @@
 * 返回值类型必须是 `void`
 * 方法名：`testXxx`
 * 断言：
-```java
-Assertions.assertEquals(expected, actual);
-```
+  ```java
+  Assertions.assertEquals(expected, actual);
+  ```
 * 当期待值和实际值相等时，测试通过；不等时报错
 * `@BeforeAll`：该方法在所有测试之前执行
 * `@AfterAll`：该方法在所有测试之后执行
