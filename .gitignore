@@ -5,3 +5,7 @@
 node_modules
 .vitepress/cache
 .vitepress/dist
+
+# 自动生成的目录索引（构建时由 scripts/generate-index.mjs 生成）
+**/index.md
+!/index.md

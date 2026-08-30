@@ -1,5 +1,0 @@
-# ch09-Bean的循环依赖问题
-
-- [01 Bean的循环依赖问题](./01%20Bean%E7%9A%84%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98.md)
-- [02 Spring解决循环依赖的机制](./02%20Spring%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E7%9A%84%E6%9C%BA%E5%88%B6.md)
-- [03 为什么需要三级缓存而不是两级](./03%20%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%89%E7%BA%A7%E7%BC%93%E5%AD%98%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%A4%E7%BA%A7.md)
