@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: 最近更新
-      link: /T 工业技术/TP%20%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8A%80%E6%9C%AF%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/TP3%20%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/TP31%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BD%AF%E4%BB%B6/TP316%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TP316.7%20Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/PowerShell/
+      link: /recent
     - theme: alt
       text: 分类导航
       link: /T 工业技术/
