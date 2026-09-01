@@ -1,5 +1,9 @@
 ---
 title: 当前进行
+prev: false
+next:
+  text: 课内 · 课程笔记
+  link: /current/course
 ---
 
 # 当前进行

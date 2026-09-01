@@ -1,5 +1,11 @@
 ---
 title: 当前进行 · 课内
+prev:
+  text: 当前进行
+  link: /current/
+next:
+  text: 课外 · 自主学习
+  link: /current/extension
 ---
 
 # 当前进行 · 课内
