@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const LIBRARY_ROOT = fileURLToPath(new URL('..', import.meta.url))
-const SKIP = new Set(['index.md', 'README.md', 'latest.md'])
+const SKIP = new Set(['index.md', 'README.md', 'latest.md', 'recent.md', 'course.md', 'extension.md'])
 
 function walk(dir, out = []) {
   for (const e of readdirSync(dir, { withFileTypes: true })) {

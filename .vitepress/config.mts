@@ -37,18 +37,29 @@ export default defineConfig({
   // 关闭 lastUpdated：其对每页执行 git 查询是构建主要瓶颈，关闭后构建提速约 48%（50s→26s）
   lastUpdated: false,
 
-  // 笔记中的示例链接（localhost 等本地地址）不参与死链检查，其他内部链接仍严格检查
+  // 笔记中的示例链接（localhost 等本地地址）不参与死链检查，其他内部链接仍严格检查。
+  // file:/// 用于 /recent 与 /current 页指向本地未归档笔记（e:\Study 等），同样跳过。
   ignoreDeadLinks: [
     /^https?:\/\/localhost/,
     /^https?:\/\/127\.0\.0\.1/,
-    /^https?:\/\/example\.com/
+    /^https?:\/\/example\.com/,
+    /^file:\/\//
   ],
 
   // 浏览器标签页图标（favicon）
   head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]],
 
   markdown: {
-    lineNumbers: true
+    lineNumbers: true,
+    // 放开 file:/// 链接（markdown-it 默认把 file: 当作不安全协议而不渲染）。
+    // /recent 与 /current 页用它指向本地未归档笔记（e:\Study 等）。
+    config: (md) => {
+      const defaultValidateLink = md.validateLink
+      md.validateLink = (url) => {
+        if (/^file:\/\//.test(url)) return true
+        return defaultValidateLink(url)
+      }
+    }
   },
 
   themeConfig: {
@@ -56,6 +67,8 @@ export default defineConfig({
     logo: '/logo.svg',
     nav: [
       { text: '首页', link: '/' },
+      { text: '<i class="bi bi-clock-history"></i> 最近', link: '/recent' },
+      { text: '<i class="bi bi-activity"></i> 当前', link: '/current/' },
       { text: '<i class="bi bi-book-half"></i> T 工业技术', link: '/' + TOP_DIR + '/' }
     ],
 

@@ -52,6 +52,8 @@ npm run preview    # 预览构建产物（本地预览用）
 | 文件 | 作用 | 需要手动改吗 |
 |---|---|---|
 | `T 工业技术/.../*.md` | 笔记内容 | ✅ 你的笔记 |
+| `recent.md` + `recent/` | 「最近笔记」板块（落地页 + 临时托管的最近笔记副本） | ❌ 脚本生成，勿手改 |
+| `current/` | 「当前进行」板块（课内/课外概览） | ❌ 脚本生成，勿手改 |
 | `index.md` | 首页（hero、按钮、features） | 偶尔（文本/结构） |
 | `.vitepress/config.mts` | 站点配置（标题、导航、搜索、404） | 偶尔 |
 | `.vitepress/theme/` | 主题（面包屑、侧边栏收起按钮、自定义样式、404 中文） | 偶尔 |
@@ -104,6 +106,16 @@ npm run preview    # 预览构建产物（本地预览用）
 ## 八、更新站点配置类修改
 
 改 `.vitepress/config.mts`、`.vitepress/theme/`、`index.md` 后直接推送即可自动重新部署，**无需本地构建**。
+
+## 九、/recent 与 /current 板块（临时托管最近笔记）
+
+- **`/recent`**（`recent.md` + `recent/` 目录）：展示**当前正在学习的笔记**。脚本把 `Learn/current.json` 指定项目的 `.md` 笔记**复制**到 `recent/<项目>/...` 临时托管（可在线阅读），复制时去掉「（+）」进行中前缀、在索引中标注 🔄 进行中。
+- **`/current`**（`current/` 目录）：当前项目概览，分 `/current/course`（课内）与 `/current/extension`（课外），对应 `Learn/current.json`。
+- **范围**：只处理 `current.json` 指定的项目；`e:\Study` 其余笔记不动。完成整个科目后再归档进分类树、移除 `recent/` 临时副本。
+- **更新流程**（当 `current.json` 或笔记变化时）：
+  1. `node e:\tmp\generate-portal.mjs`（清空重建 `recent/`，重写 `recent.md` 与 `current/*.md`）
+  2. `cd e:\library && git add -A && git commit -m "更新：recent/current" && git push`
+- 相关配置：`.vitepress/config.mts` 的 `nav`（最近/当前）、`markdown.config` 放开 `file:///` 链接、`ignoreDeadLinks`；`scripts/add-title.mjs` 跳过 `recent.md/course.md/extension.md`。
 
 ---
 
