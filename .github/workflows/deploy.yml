@@ -1,10 +1,11 @@
 # 构建 VitePress 站点并部署到 GitHub Pages
-# 每次 push 到 master 分支时自动触发（仓库默认分支为 master）
+# 触发：push 到 master 或 recent（两分支各放一份本工作流）
+# 组装：master = 站点工程 + 正式笔记；recent = 最近笔记（临时托管）
 name: Deploy VitePress site to Pages
 
 on:
   push:
-    branches: [master]
+    branches: [master, recent]
   workflow_dispatch:
 
 permissions:
@@ -21,20 +22,39 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: Checkout
+      - name: Checkout master (base)
         uses: actions/checkout@v4
+        with:
+          ref: master
+          path: base
+
+      - name: Checkout recent (recent notes)
+        uses: actions/checkout@v4
+        with:
+          ref: recent
+          path: _recent
+
+      # 把最近笔记覆盖进 base：recent.md、recent/、current/
+      - name: Merge recent notes into base
+        shell: pwsh
+        run: |
+          $w = "$env:GITHUB_WORKSPACE"
+          Copy-Item -Path "$w\_recent\recent.md" -Destination "$w\base\recent.md" -Force
+          Copy-Item -Path "$w\_recent\recent"   -Destination "$w\base\recent"   -Recurse -Force
+          Copy-Item -Path "$w\_recent\current"  -Destination "$w\base\current"  -Recurse -Force
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: base/package-lock.json
 
       - name: Cache Vite cache
         uses: actions/cache@v4
         with:
-          path: node_modules/.vite
-          key: vite-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          path: base/node_modules/.vite
+          key: vite-cache-${{ runner.os }}-${{ hashFiles('base/package-lock.json') }}
           restore-keys: |
             vite-cache-${{ runner.os }}-
 
@@ -42,6 +62,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
+        working-directory: base
         run: npm ci
 
       # 关键：构建前把分类目录压缩为分类号（`T 工业技术`→`T` 等），
@@ -49,9 +70,11 @@ jobs:
       #  - Linux/tar 的 255 字节文件名限制（ENAMETOOLONG）
       #  - GitHub Pages artifact 的路径长度限制
       - name: Shorten class dirs
+        working-directory: base
         run: node scripts/rename-class-dirs.mjs
 
       - name: Build
+        working-directory: base
         run: npm run build
         # 项目页 URL 带仓库名前缀，如 /library/，需传给 VitePress 作为 base
         env:
@@ -60,7 +83,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .vitepress/dist
+          path: base/.vitepress/dist
 
   deploy:
     environment:
