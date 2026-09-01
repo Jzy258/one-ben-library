@@ -1,11 +1,8 @@
-# Obsidian
+# recent 分支仅托管最近笔记；忽略构建/编辑器产物（站点工程在 master 分支，不需要）
+node_modules
+.vitepress
 .obsidian
 
-# Node / VitePress
-node_modules
-.vitepress/cache
-.vitepress/dist
-
-# 自动生成的目录索引（构建时由 scripts/generate-index.mjs 生成）
+# 忽略各处 index.md（master 遗留目录的自动索引），但放行 recent 分支的 /current 落地页
 **/index.md
-!/index.md
+!/current/index.md
