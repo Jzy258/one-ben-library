@@ -2,7 +2,7 @@
 /**
  * 壹苯图书馆 · 生成「最近笔记」(/recent) 与「当前进行」(/current/course + /current/extension) 板块
  *
- * 数据源：e:\Study\Learn\current.json（仅处理其中指定的项目，Study 其余笔记不动）
+ * 数据源：e:\Study\Learn\01-总览\current.json（仅处理其中指定的项目，Study 其余笔记不动）
  *
  * 行为：
  *   1. 把 current.json 指定项目的 .md 笔记【复制】到 library\recent\<项目>\...（临时托管，可在线阅读）
@@ -10,7 +10,7 @@
  *   2. 生成 library\recent.md（/recent 落地页，列出各项目笔记）
  *   3. 生成 library\current\{index,course,extension}.md（/current 概览，课内/课外）
  *
- * 用法：node e:\tmp\generate-portal.mjs
+ * 用法：node e:\library\script\generate-portal.mjs
  * ⚠️ library\recent\ 目录完全由本脚本管理，运行会清空重建；完成后 git add + commit + push 部署。
  */
 import {
@@ -20,7 +20,7 @@ import { join, basename, dirname } from 'node:path'
 
 const CONFIG = {
   studyRoot: 'E:/Study',                            // 学习笔记区（源）
-  currentJson: 'E:/Study/Learn/current.json',       // 当前项目索引（唯一范围来源）
+  currentJson: 'E:/Study/Learn/01-总览/current.json',  // 当前项目索引（唯一范围来源；2026-09-05 Learn 重构移至 01-总览）
   libraryRoot: 'E:/library'                         // 图书馆仓库（目标）
 }
 
