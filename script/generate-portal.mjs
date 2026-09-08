@@ -189,7 +189,13 @@ function genCurrentSection(title, tag, projects) {
     lines.push('_暂无项目。_', '')
   }
 
-  for (const p of projects) {
+  // 排序规则：科目按字典正序（zh-CN 拼音序，numeric 感知）；
+  // 组内：章节 ch 正序、笔记编号正序（根目录散装笔记的组排最后）。
+  const ordered = projects
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name, 'zh-CN', { numeric: true }))
+
+  for (const p of ordered) {
     lines.push(`## ${p.name}`, '')
     if (p.missing) {
       lines.push('- ⚠️ 目录尚未创建（待开始）', '')
@@ -207,8 +213,17 @@ function genCurrentSection(title, tag, projects) {
       if (!groups.has(sub)) groups.set(sub, [])
       groups.get(sub).push(n)
     }
-    for (const [sub, items] of groups) {
-      lines.push(`  - **${sub}**`)
+    const groupKeys = [...groups.keys()].sort((a, b) => {
+      if (a === '根目录' && b !== '根目录') return 1   // 根目录散装笔记组排最后
+      if (b === '根目录' && a !== '根目录') return -1
+      return a.localeCompare(b, 'zh-CN', { numeric: true })
+    })
+    for (const key of groupKeys) {
+      const items = groups
+        .get(key)
+        .slice()
+        .sort((x, y) => x.rel.localeCompare(y.rel, 'zh-CN', { numeric: true }))
+      lines.push(`  - **${key}**`)
       for (const n of items) {
         lines.push(`    - [${n.name}](${n.link})${n.inProgress ? ' 🔄 进行中' : ''} · ${n.time}`)
       }
