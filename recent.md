@@ -6,19 +6,21 @@ next: false
 
 # 最近进行的笔记
 
+## 9月2日 · 周三
+
+- [Breakcore](/recent/%E7%94%B5%E5%AD%90%E9%9F%B3%E4%B9%90%E6%9B%B2%E9%A3%8E/Breakcore) · 电子音乐曲风
+- [Orchestral Trance](/recent/%E7%94%B5%E5%AD%90%E9%9F%B3%E4%B9%90%E6%9B%B2%E9%A3%8E/Orchestral%20Trance) · 电子音乐曲风
+- [Uplifting Trance](/recent/%E7%94%B5%E5%AD%90%E9%9F%B3%E4%B9%90%E6%9B%B2%E9%A3%8E/Uplifting%20Trance) · 电子音乐曲风
+- [01 计算机网络在信息时代中的作用](/recent/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/01%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9C%A8%E4%BF%A1%E6%81%AF%E6%97%B6%E4%BB%A3%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8) · 计算机网络 / ch01-概述
+- [02 互联网概述](/recent/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/02%20%E4%BA%92%E8%81%94%E7%BD%91%E6%A6%82%E8%BF%B0) · 计算机网络 / ch01-概述
+- [03 互联网的组成](/recent/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/03%20%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E7%BB%84%E6%88%90) · 计算机网络 / ch01-概述
+- [04 计算机网络的类别](/recent/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/04%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E7%B1%BB%E5%88%AB) · 计算机网络 / ch01-概述
+- [05 计算机网络的性能](/recent/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/05%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD) · 计算机网络 / ch01-概述
+- [02 流程图](/recent/Mermaid/02%20%E6%B5%81%E7%A8%8B%E5%9B%BE) · Mermaid
+- [03 时序图](/recent/Mermaid/03%20%E6%97%B6%E5%BA%8F%E5%9B%BE) · Mermaid
+- [04 ER 图](/recent/Mermaid/04%20ER%20%E5%9B%BE) · Mermaid
+
 ## 9月1日 · 周二
 
-- [01 为什么要学习汇编](/recent/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/ch01-%E5%AF%BC%E8%AE%BA/01%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0%E6%B1%87%E7%BC%96) · 汇编语言 / ch01-导论
-- [02 机器语言与机器指令](/recent/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/ch01-%E5%AF%BC%E8%AE%BA/02%20%E6%9C%BA%E5%99%A8%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%9C%BA%E5%99%A8%E6%8C%87%E4%BB%A4) · 汇编语言 / ch01-导论
-- [03 指令与数据的存储、表示和传输](/recent/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/ch01-%E5%AF%BC%E8%AE%BA/03%20%E6%8C%87%E4%BB%A4%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AD%98%E5%82%A8%E3%80%81%E8%A1%A8%E7%A4%BA%E5%92%8C%E4%BC%A0%E8%BE%93) · 汇编语言 / ch01-导论
-- [01 寄存器及数据存储](/recent/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/ch02-%E5%AF%84%E5%AD%98%E5%99%A8/01%20%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8) 🔄 进行中 · 汇编语言 / ch02-寄存器
-
-## 8月31日 · 周一
-
-- [01 从人眼到数字之眼](/recent/%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95%E4%B8%8E%E5%BA%94%E7%94%A8/ch01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%AF%BC%E8%AE%BA/01%20%E4%BB%8E%E4%BA%BA%E7%9C%BC%E5%88%B0%E6%95%B0%E5%AD%97%E4%B9%8B%E7%9C%BC) · 机器视觉算法与应用 / ch01-计算机视觉导论
-- [02 数字图像的表示](/recent/%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95%E4%B8%8E%E5%BA%94%E7%94%A8/ch01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%AF%BC%E8%AE%BA/02%20%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E7%9A%84%E8%A1%A8%E7%A4%BA) · 机器视觉算法与应用 / ch01-计算机视觉导论
-- [03 视觉任务概述](/recent/%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95%E4%B8%8E%E5%BA%94%E7%94%A8/ch01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%AF%BC%E8%AE%BA/03%20%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E6%A6%82%E8%BF%B0) · 机器视觉算法与应用 / ch01-计算机视觉导论
-- [01 计算机网络在信息时代中的作用](/recent/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/01%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9C%A8%E4%BF%A1%E6%81%AF%E6%97%B6%E4%BB%A3%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8) · 计算机网络 / ch01-计算机网络概述
-- [02 互联网概述](/recent/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/02%20%E4%BA%92%E8%81%94%E7%BD%91%E6%A6%82%E8%BF%B0) · 计算机网络 / ch01-计算机网络概述
-- [03 互联网的组成](/recent/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/03%20%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E7%BB%84%E6%88%90) 🔄 进行中 · 计算机网络 / ch01-计算机网络概述
+- [01 Mermaid 概述](/recent/Mermaid/01%20Mermaid%20%E6%A6%82%E8%BF%B0) · Mermaid
 

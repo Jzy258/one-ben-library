@@ -13,6 +13,29 @@ $ErrorActionPreference = 'Stop'
 $repo = 'E:\library'
 Set-Location $repo
 
+# 0) 确保 node 可用：node 由 fnm 管理，.bat 用 -NoProfile 不会加载 profile 的 fnm env，
+#    故这里手动把 fnm 的 node 目录加入 PATH（若 node 已在 PATH 则跳过）。
+function Ensure-Node {
+  if (Get-Command node -ErrorAction SilentlyContinue) { return }
+  $candidates = @()
+  $fnmCmd = Get-Command fnm -ErrorAction SilentlyContinue
+  if ($fnmCmd) { $candidates += Split-Path $fnmCmd.Source -Parent }
+  $candidates += 'D:\fnm'
+  foreach ($root in $candidates) {
+    $dirs = Get-ChildItem "$root\node-versions\node-versions" -Directory -ErrorAction SilentlyContinue
+    $nodeDir = $dirs | Sort-Object Name -Descending | Select-Object -First 1
+    if ($nodeDir) {
+      $inst = Join-Path $nodeDir.FullName 'installation'
+      if (Test-Path (Join-Path $inst 'node.exe')) {
+        $env:PATH = "$inst;$env:PATH"
+        return
+      }
+    }
+  }
+  throw '未找到 node：fnm 未安装 node 版本。请先运行 fnm install，或去掉 -Generate 仅做提交+推送。'
+}
+Ensure-Node
+
 # 1) 确保在 recent 分支（生成 / 提交都应在 recent 上进行）
 $branch = git branch --show-current
 if ($branch -ne 'recent') {
