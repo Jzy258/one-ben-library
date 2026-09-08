@@ -218,14 +218,17 @@ function genCurrentSection(title, tag, projects) {
       if (b === '根目录' && a !== '根目录') return -1
       return a.localeCompare(b, 'zh-CN', { numeric: true })
     })
+    // 若项目无章节层次（唯一分组是「根目录」），则不显示组标题，直接列出笔记
+    const flatRoot = groupKeys.length === 1 && groupKeys[0] === '根目录'
     for (const key of groupKeys) {
       const items = groups
         .get(key)
         .slice()
         .sort((x, y) => x.rel.localeCompare(y.rel, 'zh-CN', { numeric: true }))
-      lines.push(`  - **${key}**`)
+      if (!flatRoot) lines.push(`  - **${key}**`)
+      const indent = flatRoot ? '  - ' : '    - '
       for (const n of items) {
-        lines.push(`    - [${n.name}](${n.link})${n.inProgress ? ' 🔄 进行中' : ''} · ${n.time}`)
+        lines.push(`${indent}[${n.name}](${n.link})${n.inProgress ? ' 🔄 进行中' : ''} · ${n.time}`)
       }
     }
     lines.push('')
