@@ -34,14 +34,14 @@ jobs:
           ref: recent
           path: _recent
 
-      # 把最近笔记覆盖进 base：recent.md、recent/、current/
+      # 把 recent 分支的内容覆盖进 base：recent.md（/recent 索引）+ current/（当前进行板块：落地页 + 笔记副本）
       - name: Merge recent notes into base
         shell: pwsh
         run: |
           $w = "$env:GITHUB_WORKSPACE"
           Copy-Item -Path "$w\_recent\recent.md" -Destination "$w\base\recent.md" -Force
-          Copy-Item -Path "$w\_recent\recent"   -Destination "$w\base\recent"   -Recurse -Force
-          Copy-Item -Path "$w\_recent\current"  -Destination "$w\base\current"  -Recurse -Force
+          New-Item -ItemType Directory -Path "$w\base\current" -Force | Out-Null
+          Copy-Item -Path "$w\_recent\current\*" -Destination "$w\base\current" -Recurse -Force
 
       - name: Setup Node
         uses: actions/setup-node@v4

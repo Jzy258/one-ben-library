@@ -1,17 +1,22 @@
 #!/usr/bin/env node
 /**
- * 壹苯图书馆 · 生成「最近笔记」(/recent) 与「当前进行」(/current/course + /current/extension) 板块
+ * 壹苯图书馆 · 生成「最近笔记」(/recent) 与「当前进行」(/current) 板块
  *
  * 数据源：e:\Study\Learn\01-总览\current.json（仅处理其中指定的项目，Study 其余笔记不动）
  *
  * 行为：
- *   1. 把 current.json 指定项目的 .md 笔记【复制】到 library\recent\<项目>\...（临时托管，可在线阅读）
+ *   1. 把 current.json 指定项目的 .md 笔记【复制】到 library\current\<课内|课外>\<科目>\...（临时托管，可在线阅读）
  *      - 复制时去掉「（+）」进行中前缀；这些副本是临时的，完成科目后归档进分类树并移除
- *   2. 生成 library\recent.md（/recent 落地页，列出各项目笔记）
- *   3. 生成 library\current\{index,course,extension}.md（/current 概览，课内/课外）
+ *   2. 生成 library\recent.md（/recent 落地页，按日期列出近 7 天笔记，链接指向 /current/…）
+ *   3. 生成 library\current\{index,course,extension}.md（/current 概览 + 课内/课外落地页：科目清单）
+ *
+ * 分层：笔记与主板块一样按目录树分层（<课内|课外>/<科目>/<章节>/<笔记>.md）；
+ *      侧边栏由站点工程 .vitepress/buildCurrentSidebar.mjs 扫描 current/ 生成（master 分支）；
+ *      科目/章节的 index.md 由构建时 scripts/generate-index.mjs 生成（CI 内，不入库）。
  *
  * 用法：node e:\library\script\generate-portal.mjs
- * ⚠️ library\recent\ 目录完全由本脚本管理，运行会清空重建；完成后 git add + commit + push 部署。
+ * ⚠️ library\current\课内、library\current\课外 完全由本脚本管理，运行会清空重建；
+ *    完成后 git add + commit + push 部署。
  */
 import {
   readFileSync, readdirSync, statSync, writeFileSync, mkdirSync, existsSync, rmSync, copyFileSync
@@ -68,18 +73,23 @@ function collectMd(root) {
   return out
 }
 
-// 绝对路径 → VitePress 内部链接（/recent/<项目>/<相对路径>，逐段 URL 编码）
-function hostedLink(projectName, relNoExt) {
+// 绝对路径 → VitePress 内部链接（/current/<课内|课外>/<科目>/<相对路径>，逐段 URL 编码）
+function hostedLink(tag, projectName, relNoExt) {
   const segs = relNoExt.split('/').map((s) => encodeURIComponent(s))
-  return '/recent/' + encodeURIComponent(projectName) + '/' + segs.join('/')
+  return '/current/' + encodeURIComponent(tag) + '/' + encodeURIComponent(projectName) + '/' + segs.join('/')
 }
 
-// ---------- 复制笔记到 library/recent/<项目>/ ----------
+// 科目目录链接（目录路由，末尾带斜杠，指向该科目的 index.md）
+function subjectLink(tag, projectName) {
+  return '/current/' + encodeURIComponent(tag) + '/' + encodeURIComponent(projectName) + '/'
+}
 
-// 返回该项目的笔记条目 [{ name, inProgress, link, time, rel }]
-function stageProject(proj, destRoot) {
+// ---------- 复制笔记到 library/current/<课内|课外>/<科目>/ ----------
+
+// 返回该项目的笔记条目 [{ name, inProgress, link, time, mtimeMs, project, tag, rel }]
+function stageProject(proj, tag, destRoot) {
   const absPath = toPosix(proj.path)
-  const out = { name: proj.name, path: absPath, notes: [], missing: false }
+  const out = { name: proj.name, tag, path: absPath, notes: [], missing: false }
 
   if (!existsSync(absPath)) {
     out.missing = true
@@ -91,12 +101,12 @@ function stageProject(proj, destRoot) {
     .sort((a, b) => b.mtime - a.mtime)
 
   for (const f of files) {
-    // 复制到 recent/<项目>/<相对路径>，去「（+）」前缀
+    // 复制到 current/<课内|课外>/<科目>/<相对路径>，去「（+）」前缀
     const parts = f.rel.split('/')
     const { name: cleanBase, inProgress } = displayName(parts[parts.length - 1])
     const relDirs = parts.slice(0, -1)
     const relCopy = [...relDirs, cleanBase + '.md'].join('/')
-    const targetAbs = join(destRoot, proj.name, ...relCopy.split('/'))
+    const targetAbs = join(destRoot, tag, proj.name, ...relCopy.split('/'))
     mkdirSync(dirname(targetAbs), { recursive: true })
     copyFileSync(f.abs, targetAbs)
 
@@ -104,10 +114,11 @@ function stageProject(proj, destRoot) {
     out.notes.push({
       name: cleanBase,
       inProgress,
-      link: hostedLink(proj.name, relNoExt),
+      link: hostedLink(tag, proj.name, relNoExt),
       time: fmtDateShort(new Date(f.mtime)),
       mtimeMs: f.mtime,
       project: proj.name,
+      tag,
       rel: relNoExt
     })
   }
@@ -160,7 +171,7 @@ function genRecentLanding(course, extension, now) {
     for (const n of dayNotes) {
       const relParts = n.rel.split('/')
       const sub = relParts.length > 1 ? relParts[0] : ''
-      const loc = sub ? `${n.project} / ${sub}` : n.project
+      const loc = [n.tag, n.project, sub].filter(Boolean).join(' / ')
       lines.push(`- [${n.name}](${n.link})${n.inProgress ? ' 🔄 进行中' : ''} · ${loc}`)
     }
     lines.push('')
@@ -168,12 +179,14 @@ function genRecentLanding(course, extension, now) {
   return lines.join('\n') + '\n'
 }
 
-// ---------- 生成 /current 概览 ----------
+// ---------- 生成 /current 落地页（课内 / 课外）----------
+// 仅列科目清单（各科目链接到 /current/<课内|课外>/<科目>/ 目录页）；
+// 章节与笔记的分层展示交给侧边栏与构建时生成的目录 index.md。
 
-function genCurrentSection(title, tag, projects) {
+function genCurrentLanding(tag, projects) {
   const lines = []
   lines.push('---')
-  lines.push(`title: ${title}`)
+  lines.push(`title: 当前进行 · ${tag}`)
   // 修复底部「上一篇/下一篇」：这些页不在侧边栏，需显式给出合理链接
   if (tag === '课内') {
     lines.push('prev:', '  text: 当前进行', '  link: /current/')
@@ -187,53 +200,29 @@ function genCurrentSection(title, tag, projects) {
 
   if (!projects.length) {
     lines.push('_暂无项目。_', '')
+    return lines.join('\n') + '\n'
   }
 
-  // 排序规则：科目按字典正序（zh-CN 拼音序，numeric 感知）；
-  // 组内：章节 ch 正序、笔记编号正序（根目录散装笔记的组排最后）。
+  // 科目按字典正序（zh-CN 拼音序，numeric 感知）
   const ordered = projects
     .slice()
     .sort((a, b) => a.name.localeCompare(b.name, 'zh-CN', { numeric: true }))
 
   for (const p of ordered) {
-    lines.push(`## ${p.name}`, '')
     if (p.missing) {
-      lines.push('- ⚠️ 目录尚未创建（待开始）', '')
+      lines.push(`- ${p.name} —— ⚠️ 目录尚未创建（待开始）`)
       continue
     }
-    if (!p.notes.length) {
-      lines.push('- （该目录暂无笔记）', '')
-      continue
-    }
-    // 按 chXX 二级目录分组显示（项目标题下直接列出章节）
-    const groups = new Map()
-    for (const n of p.notes) {
-      const relParts = n.rel.split('/')
-      const sub = relParts.length > 1 ? relParts[0] : '根目录'
-      if (!groups.has(sub)) groups.set(sub, [])
-      groups.get(sub).push(n)
-    }
-    const groupKeys = [...groups.keys()].sort((a, b) => {
-      if (a === '根目录' && b !== '根目录') return 1   // 根目录散装笔记组排最后
-      if (b === '根目录' && a !== '根目录') return -1
-      return a.localeCompare(b, 'zh-CN', { numeric: true })
-    })
-    // 若项目无章节层次（唯一分组是「根目录」），则不显示组标题，直接列出笔记
-    const flatRoot = groupKeys.length === 1 && groupKeys[0] === '根目录'
-    for (const key of groupKeys) {
-      const items = groups
-        .get(key)
-        .slice()
-        .sort((x, y) => x.rel.localeCompare(y.rel, 'zh-CN', { numeric: true }))
-      if (!flatRoot) lines.push(`  - **${key}**`)
-      const indent = flatRoot ? '  - ' : '    - '
-      for (const n of items) {
-        lines.push(`${indent}[${n.name}](${n.link})${n.inProgress ? ' 🔄 进行中' : ''} · ${n.time}`)
-      }
-    }
-    lines.push('')
+    const chapters = new Set(
+      p.notes.map((n) => (n.rel.includes('/') ? n.rel.split('/')[0] : '')).filter(Boolean)
+    )
+    const stat = [chapters.size ? `${chapters.size} 章` : '', `${p.notes.length} 篇`]
+      .filter(Boolean)
+      .join(' · ')
+    lines.push(`- [${p.name}](${subjectLink(p.tag, p.name)}) —— ${stat}`)
   }
 
+  lines.push('', '> 分层浏览见左侧目录树；科目页内含章节与笔记清单。', '')
   return lines.join('\n') + '\n'
 }
 
@@ -253,21 +242,20 @@ function main() {
   const extensionRaw = current['课外'] || []
 
   const lib = CONFIG.libraryRoot
-  const recentRoot = join(lib, 'recent')
   const curDir = join(lib, 'current')
 
-  // recent/ 完全由脚本管理：清空重建
-  rmSync(recentRoot, { recursive: true, force: true })
-  mkdirSync(recentRoot, { recursive: true })
+  // 托管区完全由脚本管理：清空重建（旧版 recent/ 一并清理）
+  rmSync(join(lib, 'recent'), { recursive: true, force: true })
+  for (const tag of ['课内', '课外']) rmSync(join(curDir, tag), { recursive: true, force: true })
   mkdirSync(curDir, { recursive: true })
 
-  const course = courseRaw.map((p) => stageProject(p, recentRoot))
-  const extension = extensionRaw.map((p) => stageProject(p, recentRoot))
+  const course = courseRaw.map((p) => stageProject(p, '课内', curDir))
+  const extension = extensionRaw.map((p) => stageProject(p, '课外', curDir))
 
   writeFileSync(join(lib, 'recent.md'), genRecentLanding(course, extension, now), 'utf8')
 
-  const coursePage = genCurrentSection('当前进行 · 课内', '课内', course)
-  const extensionPage = genCurrentSection('当前进行 · 课外', '课外', extension)
+  const coursePage = genCurrentLanding('课内', course)
+  const extensionPage = genCurrentLanding('课外', extension)
   const currentIndex = [
     '---', 'title: 当前进行',
     'prev: false',
@@ -285,10 +273,10 @@ function main() {
   const all = [...course, ...extension]
   const copied = all.filter((p) => !p.missing).reduce((s, p) => s + p.notes.length, 0)
   const missing = all.filter((p) => p.missing).map((p) => p.name)
-  console.log(`✓ recent/ 托管笔记：${copied} 篇（项目：${all.map((p) => p.name).join(' / ') || '无'}）`)
+  console.log(`✓ current/ 托管笔记：${copied} 篇（项目：${all.map((p) => p.name).join(' / ') || '无'}）`)
   if (missing.length) console.log(`⚠ 以下项目目录不存在（已跳过）：${missing.join(' / ')}`)
   console.log('✓ 已生成：library/recent.md · library/current/{index,course,extension}.md')
-  console.log('提醒：记得 git add -A && commit && push 触发部署。')
+  console.log('提醒：git add -A && commit && push 触发部署（科目/章节 index.md 由 CI 构建时生成）。')
 }
 
 main()
