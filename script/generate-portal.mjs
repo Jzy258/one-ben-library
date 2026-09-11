@@ -56,6 +56,11 @@ function displayName(fname) {
   return { name: n, inProgress }
 }
 
+// markdown 文本转义：站点开启了 TeX 数学（config.mts 的 markdown.math），
+// 文本里的 $ 必须转义，否则形如 `a$b…c$d` 的内容会被当成行内公式（笔记名/路径含 $ 时尤其容易触发）。
+// 链接目标无需处理：hostedLink/subjectLink 已用 encodeURIComponent（$ → %24）。
+function mdText(s) { return String(s).replace(/([\\$])/g, '\\$1') }
+
 // 递归收集 .md 笔记（排除隐藏/构建/legacy 目录）
 function collectMd(root) {
   const out = []
@@ -172,7 +177,9 @@ function genRecentLanding(course, extension, now) {
       const relParts = n.rel.split('/')
       const sub = relParts.length > 1 ? relParts[0] : ''
       const loc = [n.tag, n.project, sub].filter(Boolean).join(' / ')
-      lines.push(`- [${n.name}](${n.link})${n.inProgress ? ' 🔄 进行中' : ''} · ${loc}`)
+      lines.push(
+        `- [${mdText(n.name)}](${n.link})${n.inProgress ? ' 🔄 进行中' : ''} · ${mdText(loc)}`
+      )
     }
     lines.push('')
   }
@@ -210,7 +217,7 @@ function genCurrentLanding(tag, projects) {
 
   for (const p of ordered) {
     if (p.missing) {
-      lines.push(`- ${p.name} —— ⚠️ 目录尚未创建（待开始）`)
+      lines.push(`- ${mdText(p.name)} —— ⚠️ 目录尚未创建（待开始）`)
       continue
     }
     const chapters = new Set(
@@ -219,7 +226,7 @@ function genCurrentLanding(tag, projects) {
     const stat = [chapters.size ? `${chapters.size} 章` : '', `${p.notes.length} 篇`]
       .filter(Boolean)
       .join(' · ')
-    lines.push(`- [${p.name}](${subjectLink(p.tag, p.name)}) —— ${stat}`)
+    lines.push(`- [${mdText(p.name)}](${subjectLink(p.tag, p.name)}) —— ${stat}`)
   }
 
   lines.push('', '> 分层浏览见左侧目录树；科目页内含章节与笔记清单。', '')
