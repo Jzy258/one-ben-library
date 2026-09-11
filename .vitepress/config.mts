@@ -3,6 +3,7 @@ import { readdirSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { buildSidebar } from './buildSidebar.mjs'
+import { buildCurrentSidebar } from './buildCurrentSidebar.mjs'
 
 // 壹苯图书馆 · VitePress 配置
 // 内容源 = library 仓库根目录（srcDir: '.'），中图分类目录树原地作为网站内容
@@ -76,8 +77,12 @@ export default defineConfig({
       { text: '<i class="bi bi-book-half"></i> T 工业技术', link: '/' + TOP_DIR + '/' }
     ],
 
-    // 自动侧边栏：扫描中图分类目录树生成（见 buildSidebar.mjs）
-    sidebar: buildSidebar(),
+    // 侧边栏：/current 下用「当前进行」目录树（课内/课外 → 科目 → 章节 → 笔记，见 buildCurrentSidebar.mjs，
+    // 扫的是 recent 分支托管的 current/）；其余页面用中图分类目录树（见 buildSidebar.mjs）
+    sidebar: {
+      '/current/': buildCurrentSidebar(),
+      '/': buildSidebar()
+    },
 
     search: {
       provider: 'local',

@@ -1,7 +1,7 @@
 // 为每个「主题目录」与「章节目录」自动生成 index.md（目录索引页）。
 // 依赖：VitePress 目录路由（/目录/ → /目录/index.html）需要 index.md 才能打开。
 // 幂等：已存在 index.md 时跳过，不覆盖用户可能手写的内容。
-import { readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, readdirSync, writeFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
 import { LIBRARY_ROOT, TOP_DIRS, containsMd } from './lib.mjs'
 
@@ -38,5 +38,11 @@ function generate(dir) {
 
 for (const topDir of TOP_DIRS) {
   generate(join(LIBRARY_ROOT, topDir))
+}
+// 「当前进行」板块：笔记由 recent 分支托管在 current/ 下（CI 组装 base 时才存在），
+// 同样为其科目/章节目录生成 index.md，供侧边栏目录链接与分层导航使用。
+for (const tag of ['课内', '课外']) {
+  const dir = join(LIBRARY_ROOT, 'current', tag)
+  if (existsSync(dir)) generate(dir)
 }
 console.log('index.md 生成完成')
