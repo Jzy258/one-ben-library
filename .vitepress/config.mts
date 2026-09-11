@@ -56,6 +56,10 @@ export default defineConfig({
 
   markdown: {
     lineNumbers: true,
+    // 数学公式（TeX）：行内 $...$、块级 $$...$$。
+    // VitePress 内置支持——markdown.math 为真时动态加载 markdown-it-mathjax3（见 devDependencies），
+    // 构建期用 MathJax 渲染为 SVG，无需额外 CSS/客户端脚本。
+    math: true,
     // 放开 file:/// 链接（markdown-it 默认把 file: 当作不安全协议而不渲染）。
     // /recent 与 /current 页用它指向本地未归档笔记（e:\Study 等）。
     config: (md) => {

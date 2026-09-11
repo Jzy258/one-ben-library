@@ -12,7 +12,8 @@
     "preview": "vitepress preview ."
   },
   "devDependencies": {
-    "vitepress": "^1.6.3",
-    "bootstrap-icons": "^1.13.1"
+    "bootstrap-icons": "^1.13.1",
+    "markdown-it-mathjax3": "^4.3.2",
+    "vitepress": "^1.6.3"
   }
 }
