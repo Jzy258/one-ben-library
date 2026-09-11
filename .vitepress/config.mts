@@ -10,6 +10,8 @@ import { buildSidebar } from './buildSidebar.mjs'
 // GitHub Pages 项目页 URL 带仓库名前缀（如 /library/），由部署流水线注入；
 // 本地预览时默认为 /
 const base = process.env.VITEPRESS_BASE || '/'
+// 手工拼接静态资源路径时使用：确保以 / 结尾
+const basePrefix = base.endsWith('/') ? base : base + '/'
 
 // 动态检测顶层分类目录：兼容完整名 `T 工业技术`（本地）与 CI 压缩名 `T`
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -47,7 +49,9 @@ export default defineConfig({
   ],
 
   // 浏览器标签页图标（favicon）
-  head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]],
+  // ⚠️ head 中的链接会被 VitePress 原样输出、不会自动加 base 前缀；
+  // 项目页部署在子路径下（/one-ben-library/），必须手工拼接，否则浏览器会请求域名根目录而 404。
+  head: [['link', { rel: 'icon', type: 'image/svg+xml', href: `${basePrefix}favicon.svg` }]],
 
   markdown: {
     lineNumbers: true,
