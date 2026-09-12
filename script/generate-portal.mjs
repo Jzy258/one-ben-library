@@ -261,19 +261,12 @@ function genCurrentLanding(tag, projects) {
 
   for (const p of ordered) {
     if (p.missing) {
-      lines.push(`- ${mdText(p.name)} —— ⚠️ 目录尚未创建（待开始）`)
+      lines.push(`- ${mdText(p.name)} ⚠️ 目录尚未创建（待开始）`)
       continue
     }
-    const chapters = new Set(
-      p.notes.map((n) => (n.rel.includes('/') ? n.rel.split('/')[0] : '')).filter(Boolean)
-    )
-    const stat = [chapters.size ? `${chapters.size} 章` : '', `${p.notes.length} 篇`]
-      .filter(Boolean)
-      .join(' · ')
-    lines.push(`- [${mdText(p.name)}](${subjectLink(p.tag, p.name)}) —— ${stat}`)
+    lines.push(`- [${mdText(p.name)}](${subjectLink(p.tag, p.name)})`)
   }
 
-  lines.push('', '> 分层浏览见左侧目录树；科目页内含章节与笔记清单。', '')
   return lines.join('\n') + '\n'
 }
 
