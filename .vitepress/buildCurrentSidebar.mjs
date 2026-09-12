@@ -27,12 +27,13 @@ function buildTree(dir, urlBase) {
     const name = f.replace(/\.md$/, '')
     items.push({ text: name, link: `${urlBase}/${enc(name)}` })
   }
+  // 章节（第 3 层）默认折叠；VitePress 会自动展开当前页所在的组
   for (const s of subDirs) {
     const childBase = `${urlBase}/${enc(s)}`
     items.push({
       text: s,
       link: `${childBase}/`,
-      collapsed: false,
+      collapsed: true,
       items: buildTree(join(dir, s), childBase)
     })
   }
@@ -57,6 +58,8 @@ export function buildCurrentSidebar() {
       .map((e) => e.name)
       .sort(nameSort)
 
+    // 层级：课内/课外（第 1 层，默认展开）→ 科目（第 2 层，默认可见但折叠）→ 章节 → 笔记。
+    // 即默认只展开到科目层：科目下的章节/笔记需点击展开（当前页所在的组会被自动展开）。
     groups.push({
       text: t.text,
       link: t.link,
@@ -66,7 +69,7 @@ export function buildCurrentSidebar() {
         return {
           text: s,
           link: `${subBase}/`,
-          collapsed: false,
+          collapsed: true,
           items: buildTree(join(dir, s), subBase)
         }
       })
