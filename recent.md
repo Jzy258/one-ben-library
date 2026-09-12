@@ -6,13 +6,18 @@ next: false
 
 # 最近进行的笔记
 
+## 9月12日 · 周六
+
+- [Mashcore](/current/%E8%AF%BE%E5%A4%96/%E7%94%B5%E5%AD%90%E9%9F%B3%E4%B9%90%E6%9B%B2%E9%A3%8E/Mashcore) · 课外 / 电子音乐曲风
+- [02 互联网概述](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/02%20%E4%BA%92%E8%81%94%E7%BD%91%E6%A6%82%E8%BF%B0) · 课内 / 计算机网络 / ch01-概述
+- [03 互联网的组成](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/03%20%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E7%BB%84%E6%88%90) · 课内 / 计算机网络 / ch01-概述
+- [04 计算机网络的类别](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/04%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E7%B1%BB%E5%88%AB) · 课内 / 计算机网络 / ch01-概述
+- [05 计算机网络的性能](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/05%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD) · 课内 / 计算机网络 / ch01-概述
+- [06 计算机网络体系结构](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/06%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84) · 课内 / 计算机网络 / ch01-概述
+
 ## 9月10日 · 周四
 
 - [04 视觉任务概述](/current/%E8%AF%BE%E5%86%85/%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95%E4%B8%8E%E5%BA%94%E7%94%A8/ch01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%AF%BC%E8%AE%BA/04%20%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E6%A6%82%E8%BF%B0) · 课内 / 机器视觉算法与应用 / ch01-计算机视觉导论
-
-## 9月9日 · 周三
-
-- [06 计算机网络体系结构](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/06%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84) 🔄 进行中 · 课内 / 计算机网络 / ch01-概述
 
 ## 9月8日 · 周二
 

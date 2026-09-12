@@ -6,8 +6,7 @@
  *
  * 行为：
  *   1. 把 current.json 指定项目的 .md 笔记【复制】到 library\current\<课内|课外>\<科目>\...（临时托管，可在线阅读）
- *      - 复制时去掉「（+）」进行中前缀；这些副本是临时的，完成科目后归档进分类树并移除
- *   2. 生成 library\recent.md（/recent 落地页，按日期列出近 7 天笔记，链接指向 /current/…）
+ *      - 复制时去掉「（+）」进行中前缀；这些副本是临时的，完成科目后归档进分类树并移除//      - 复制时统一无序列表标记为 `*`（- / + → *；跳过代码围栏、front-matter、分隔线；源笔记不改动） *   2. 生成 library\recent.md（/recent 落地页，按日期列出近 7 天笔记，链接指向 /current/…）
  *   3. 生成 library\current\{index,course,extension}.md（/current 概览 + 课内/课外落地页：科目清单）
  *
  * 分层：笔记与主板块一样按目录树分层（<课内|课外>/<科目>/<章节>/<笔记>.md）；
@@ -19,7 +18,7 @@
  *    完成后 git add + commit + push 部署。
  */
 import {
-  readFileSync, readdirSync, statSync, writeFileSync, mkdirSync, existsSync, rmSync, copyFileSync
+  readFileSync, readdirSync, statSync, writeFileSync, mkdirSync, existsSync, rmSync
 } from 'node:fs'
 import { join, basename, dirname } from 'node:path'
 
@@ -60,6 +59,50 @@ function displayName(fname) {
 // 文本里的 $ 必须转义，否则形如 `a$b…c$d` 的内容会被当成行内公式（笔记名/路径含 $ 时尤其容易触发）。
 // 链接目标无需处理：hostedLink/subjectLink 已用 encodeURIComponent（$ → %24）。
 function mdText(s) { return String(s).replace(/([\\$])/g, '\\$1') }
+
+// 无序列表标记统一：把托管副本里的 `-` / `+` 前导标记统一为 `*`
+// - 保持缩进与层级；`*` 开头的不动
+// - 跳过：代码围栏（``` / ~~~）、文件开头的 YAML front-matter
+// - 不误伤主题分隔线（--- / - - - / *** / ___）
+function normalizeListMarkers(text) {
+  const lines = text.split('\n')
+  const out = []
+  let inFence = false
+  let fenceChar = ''
+  let inFrontMatter = false
+  let frontMatterClosed = false
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    const fence = line.match(/^\s*(`{3,}|~{3,})/)
+    if (fence) {
+      if (!inFence) { inFence = true; fenceChar = fence[1][0] }
+      else if (fence[1][0] === fenceChar) { inFence = false }
+      out.push(line)
+      continue
+    }
+    if (inFence) { out.push(line); continue }
+    if (!frontMatterClosed && i === 0 && line.trim() === '---') {
+      inFrontMatter = true
+      out.push(line)
+      continue
+    }
+    if (inFrontMatter) {
+      if (line.trim() === '---') { inFrontMatter = false; frontMatterClosed = true }
+      out.push(line)
+      continue
+    }
+    out.push(normalizeListLine(line))
+  }
+  return out.join('\n')
+}
+
+// 单行：`<缩进> [-+] <空白> 内容` → `<缩进> * <空白> 内容`；其他行原样
+function normalizeListLine(line) {
+  const m = line.match(/^(\s*)([-+])(\s+)(.*)$/)
+  if (!m) return line
+  if (/^([*_-])(\s*\1){2,}$/.test(line.trim())) return line // 主题分隔线（- - - / * * * 等）
+  return m[1] + '*' + m[3] + m[4]
+}
 
 // 递归收集 .md 笔记（排除隐藏/构建/legacy 目录）
 function collectMd(root) {
@@ -113,7 +156,8 @@ function stageProject(proj, tag, destRoot) {
     const relCopy = [...relDirs, cleanBase + '.md'].join('/')
     const targetAbs = join(destRoot, tag, proj.name, ...relCopy.split('/'))
     mkdirSync(dirname(targetAbs), { recursive: true })
-    copyFileSync(f.abs, targetAbs)
+    // 写入时统一无序列表标记为 *（源笔记不改动）
+    writeFileSync(targetAbs, normalizeListMarkers(readFileSync(f.abs, 'utf8')), 'utf8')
 
     const relNoExt = relCopy.replace(/\.md$/, '')
     out.notes.push({
