@@ -1,7 +1,7 @@
 # 电子音乐研究 · Electronic Music
 
 > **定位**：第五线 · **兴趣线**子计划（纯弹性 · 不设 KPI · 中断不补欠债 · 不占主线时间）
-> **主计划**：[Learn/10-兴趣计划/electronic-music](../../Learn/10-兴趣计划/electronic-music/README.md) ｜ 兴趣线总则：[interest-plan](../../Learn/10-兴趣计划/interest-plan.md)
+> **主计划**：[Learn/10-兴趣计划/electronic-music](file:///E:/Study/Learn/10-%E5%85%B4%E8%B6%A3%E8%AE%A1%E5%88%92/electronic-music/README.md) ｜ 兴趣线总则：[interest-plan](file:///E:/Study/Learn/10-%E5%85%B4%E8%B6%A3%E8%AE%A1%E5%88%92/interest-plan.md)
 > **本 vault**：Obsidian（已装 obsidian-git）—— **产出全部写在这里**
 > **参考底本（只读）**：`../MusicResearch/`（`Genres/` ≈150 篇短桩 · `编曲/Trance` 资产 · `音色设计`）
 > **状态**：2026-09-12 搭骨架（阶段一 = 电子舞曲 · 四大主干）

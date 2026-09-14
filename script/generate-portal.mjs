@@ -20,7 +20,7 @@
 import {
   readFileSync, readdirSync, statSync, writeFileSync, mkdirSync, existsSync, rmSync
 } from 'node:fs'
-import { join, basename, dirname } from 'node:path'
+import { join, basename, dirname, normalize } from 'node:path'
 
 const CONFIG = {
   studyRoot: 'E:/Study',                            // 学习笔记区（源）
@@ -59,6 +59,51 @@ function displayName(fname) {
 // 文本里的 $ 必须转义，否则形如 `a$b…c$d` 的内容会被当成行内公式（笔记名/路径含 $ 时尤其容易触发）。
 // 链接目标无需处理：hostedLink/subjectLink 已用 encodeURIComponent（$ → %24）。
 function mdText(s) { return String(s).replace(/([\\$])/g, '\\$1') }
+
+// ---------- 相对链接重写 ----------
+// 托管副本里，源笔记的相对链接未必能解析，会让 VitePress 死链检查直接构建失败：
+//   ① 目标在项目内、且会被一起复制 → 保持原样（副本目录结构与源一致，相对链接照常有效）
+//   ② 目标不存在（如尚未写的卡片）/ 在项目外（如 ../../Learn/…）/ 位于排除目录 / 非 .md 文件
+//      → 改写为 file:///<源绝对路径>：config.mts 的 ignoreDeadLinks 已忽略 file: 死链，构建可过，
+//        本地点击可定位；等目标写好后，下一轮生成会自动回到 ① 变成站点内链。
+// 每轮运行会把 ② 的目标汇总打印出来，便于回源笔记修正。
+const unresolvedLinks = []
+const LINK_RE = /(!?\[[^\]]*\]\()([^)\s]+)((?:\s+"[^"]*")?\))/g
+
+// 只处理相对链接：排除 http(s):/file:/mailto: 等协议、以 / 开头的站点绝对路径、纯锚点
+function isRelativeTarget(t) {
+  if (!t) return false
+  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(t)) return false
+  return !t.startsWith('/') && !t.startsWith('#')
+}
+
+function toFileUri(abs) { return 'file:///' + encodeURI(abs) }
+
+function rewriteRelativeLinks(text, srcFileAbs, srcRootAbs) {
+  const srcDir = toPosix(dirname(srcFileAbs))
+  const root = toPosix(srcRootAbs)
+  return text.replace(LINK_RE, (whole, pre, target, post) => {
+    if (!isRelativeTarget(target)) return whole
+    const hashIdx = target.indexOf('#')
+    const pathPart = hashIdx >= 0 ? target.slice(0, hashIdx) : target
+    const hash = hashIdx >= 0 ? target.slice(hashIdx) : ''
+    if (!pathPart) return whole
+    let decoded
+    try { decoded = decodeURIComponent(pathPart) } catch { return whole }
+    const abs = toPosix(normalize(join(srcDir, decoded)))
+    if (abs === root || abs.startsWith(root + '/')) {
+      const rel = abs === root ? '' : abs.slice(root.length + 1)
+      const segs = rel.split('/').filter(Boolean)
+      const excluded = segs.some((s) => s.startsWith('.') || EXCLUDE_DIRS.has(s))
+      const exists = existsSync(abs)
+      const isMdOrDir = exists && (statSync(abs).isDirectory() || abs.toLowerCase().endsWith('.md'))
+      const mdWithoutExt = !exists && existsSync(abs + '.md')
+      if (!excluded && (isMdOrDir || mdWithoutExt)) return whole
+    }
+    unresolvedLinks.push(decoded)
+    return pre + toFileUri(abs) + hash + post
+  })
+}
 
 // 无序列表标记统一：把托管副本里的 `-` / `+` 前导标记统一为 `*`
 // - 保持缩进与层级；`*` 开头的不动
@@ -156,8 +201,13 @@ function stageProject(proj, tag, destRoot) {
     const relCopy = [...relDirs, cleanBase + '.md'].join('/')
     const targetAbs = join(destRoot, tag, proj.name, ...relCopy.split('/'))
     mkdirSync(dirname(targetAbs), { recursive: true })
-    // 写入时统一无序列表标记为 *（源笔记不改动）
-    writeFileSync(targetAbs, normalizeListMarkers(readFileSync(f.abs, 'utf8')), 'utf8')
+    // 写入副本：无法托管的相对链接改写为 file:///（源笔记不改动）+ 统一无序列表标记为 *
+    const srcText = readFileSync(f.abs, 'utf8')
+    writeFileSync(
+      targetAbs,
+      normalizeListMarkers(rewriteRelativeLinks(srcText, f.abs, absPath)),
+      'utf8'
+    )
 
     const relNoExt = relCopy.replace(/\.md$/, '')
     out.notes.push({
@@ -319,6 +369,11 @@ function main() {
   const missing = all.filter((p) => p.missing).map((p) => p.name)
   console.log(`✓ current/ 托管笔记：${copied} 篇（项目：${all.map((p) => p.name).join(' / ') || '无'}）`)
   if (missing.length) console.log(`⚠ 以下项目目录不存在（已跳过）：${missing.join(' / ')}`)
+  if (unresolvedLinks.length) {
+    const targets = [...new Set(unresolvedLinks)].sort()
+    console.log(`⚠ ${unresolvedLinks.length} 处相对链接不在托管范围内（已改写为 file:/// 本地路径）：`)
+    for (const t of targets) console.log(`    ${t}`)
+  }
   console.log('✓ 已生成：library/recent.md · library/current/{index,course,extension}.md')
   console.log('提醒：git add -A && commit && push 触发部署（科目/章节 index.md 由 CI 构建时生成）。')
 }
