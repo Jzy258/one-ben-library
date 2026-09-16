@@ -6,6 +6,15 @@ next: false
 
 # 最近进行的笔记
 
+## 9月15日 · 周二
+
+- [01 物理层的基本概念](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch02-%E7%89%A9%E7%90%86%E5%B1%82/01%20%E7%89%A9%E7%90%86%E5%B1%82%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5) · 课内 / 计算机网络 / ch02-物理层
+- [02 数据通信的基础知识](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch02-%E7%89%A9%E7%90%86%E5%B1%82/02%20%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86) · 课内 / 计算机网络 / ch02-物理层
+- [03 物理传输媒体](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch02-%E7%89%A9%E7%90%86%E5%B1%82/03%20%E7%89%A9%E7%90%86%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93) · 课内 / 计算机网络 / ch02-物理层
+- [04 信道复用技术](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch02-%E7%89%A9%E7%90%86%E5%B1%82/04%20%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF) · 课内 / 计算机网络 / ch02-物理层
+- [04 ER 图](/current/%E8%AF%BE%E5%A4%96/Mermaid/04%20ER%20%E5%9B%BE) · 课外 / Mermaid
+- [05 类图](/current/%E8%AF%BE%E5%A4%96/Mermaid/05%20%E7%B1%BB%E5%9B%BE) · 课外 / Mermaid
+
 ## 9月13日 · 周日
 
 - [曲风索引](/current/%E8%AF%BE%E5%A4%96/%E7%94%B5%E5%AD%90%E9%9F%B3%E4%B9%90/00-%E6%80%BB%E7%BA%B2/%E6%9B%B2%E9%A3%8E%E7%B4%A2%E5%BC%95) · 课外 / 电子音乐 / 00-总纲
@@ -30,9 +39,6 @@ next: false
 - [04 计算机网络的类别](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/04%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E7%B1%BB%E5%88%AB) · 课内 / 计算机网络 / ch01-概述
 - [05 计算机网络的性能](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/05%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD) · 课内 / 计算机网络 / ch01-概述
 - [06 计算机网络体系结构](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch01-%E6%A6%82%E8%BF%B0/06%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84) · 课内 / 计算机网络 / ch01-概述
-- [02 数据通信的基础知识](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch02-%E7%89%A9%E7%90%86%E5%B1%82/02%20%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86) · 课内 / 计算机网络 / ch02-物理层
-- [03 物理传输媒体](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch02-%E7%89%A9%E7%90%86%E5%B1%82/03%20%E7%89%A9%E7%90%86%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93) · 课内 / 计算机网络 / ch02-物理层
-- [04 信道复用技术](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch02-%E7%89%A9%E7%90%86%E5%B1%82/04%20%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF) · 课内 / 计算机网络 / ch02-物理层
 
 ## 9月12日 · 周六
 
@@ -43,20 +49,8 @@ next: false
 - [演进时间线](/current/%E8%AF%BE%E5%A4%96/%E7%94%B5%E5%AD%90%E9%9F%B3%E4%B9%90/00-%E6%80%BB%E7%BA%B2/%E6%BC%94%E8%BF%9B%E6%97%B6%E9%97%B4%E7%BA%BF) · 课外 / 电子音乐 / 00-总纲
 - [资源清单](/current/%E8%AF%BE%E5%A4%96/%E7%94%B5%E5%AD%90%E9%9F%B3%E4%B9%90/00-%E6%80%BB%E7%BA%B2/%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95) · 课外 / 电子音乐 / 00-总纲
 - [README](/current/%E8%AF%BE%E5%A4%96/%E7%94%B5%E5%AD%90%E9%9F%B3%E4%B9%90/README) · 课外 / 电子音乐
-- [01 物理层的基本概念](/current/%E8%AF%BE%E5%86%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ch02-%E7%89%A9%E7%90%86%E5%B1%82/01%20%E7%89%A9%E7%90%86%E5%B1%82%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5) · 课内 / 计算机网络 / ch02-物理层
 
 ## 9月10日 · 周四
 
 - [04 视觉任务概述](/current/%E8%AF%BE%E5%86%85/%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95%E4%B8%8E%E5%BA%94%E7%94%A8/ch01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%AF%BC%E8%AE%BA/04%20%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E6%A6%82%E8%BF%B0) · 课内 / 机器视觉算法与应用 / ch01-计算机视觉导论
-
-## 9月8日 · 周二
-
-- [01 DL 编译器概述](/current/%E8%AF%BE%E5%A4%96/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BC%96%E8%AF%91%E5%99%A8/01%20DL%20%E7%BC%96%E8%AF%91%E5%99%A8%E6%A6%82%E8%BF%B0) · 课外 / 深度学习编译器
-- [02 高层 IR（一）](/current/%E8%AF%BE%E5%A4%96/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BC%96%E8%AF%91%E5%99%A8/02%20%E9%AB%98%E5%B1%82%20IR%EF%BC%88%E4%B8%80%EF%BC%89) · 课外 / 深度学习编译器
-- [04 低层 IR](/current/%E8%AF%BE%E5%A4%96/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BC%96%E8%AF%91%E5%99%A8/04%20%E4%BD%8E%E5%B1%82%20IR) · 课外 / 深度学习编译器
-- [05 前端优化](/current/%E8%AF%BE%E5%A4%96/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BC%96%E8%AF%91%E5%99%A8/05%20%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96) · 课外 / 深度学习编译器
-
-## 9月7日 · 周一
-
-- [09 现状与未来方向](/current/%E8%AF%BE%E5%A4%96/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BC%96%E8%AF%91%E5%99%A8/09%20%E7%8E%B0%E7%8A%B6%E4%B8%8E%E6%9C%AA%E6%9D%A5%E6%96%B9%E5%90%91) · 课外 / 深度学习编译器
 
