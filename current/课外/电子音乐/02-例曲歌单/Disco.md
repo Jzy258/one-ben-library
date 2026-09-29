@@ -1,3 +1,5 @@
+# 歌单 · Disco
+
 > 🔗 [[01-曲风卡片/Disco]] ｜ 目标时长 ≈ **50 min**｜ 状态：◐
 
 ---
@@ -7,7 +9,9 @@
 * **四踩底鼓的“推”** —— 每拍一下，像节拍器一样不知疲倦；Disco 最关键的发明
 * **真贝斯主导律动** —— 低音不只负责铺底，而且负责律动
 * **弦乐** —— 不是背景铺底，是**推进器**；上行 riff 推动情绪
-* **高潮处理** —— **转调升 key** 与 **器乐 Break**
+* **高潮处理** —— **转调升 key** 与 **器乐 Breakdown**
+
+> **术语**：[[术语表#四踩（Four-on-the-floor）|四踩]] · [[术语表#反拍（Off-beat）|反拍]] · [[术语表#转调升 key（Modulation）|转调升 key]] · [[术语表#Breakdown|Breakdown]] · [[术语表#Roll（滚奏）|Roll]] · [[术语表#八度跳跃贝斯（Octave Bass）|八度跳跃贝斯]] · [[术语表#Clap（手拍）|Clap]] · [[术语表#降号级数借用（Modal Mixture）|降号级数]]
 
 ---
 
@@ -17,7 +21,7 @@
 
 |  #  | 曲目                                                                                                                  | 艺人          | 年份   | 听点                                                                | L   |
 | :-: | ------------------------------------------------------------------------------------------------------------------- | ----------- | ---- | ----------------------------------------------------------------- | --- |
-|  1  | [**Love Is the Message**](https://music.163.com/song?id=26151043&uct2=U2FsdGVkX18wFBIbkDg5E2WR71/DmNG/DCTtMj4+gyI=) | MFSB        | 1973 | **入门** · 节奏基底；弦乐与贝斯的“对话”；★**中段无鼓 Break**，只剩弦乐，后世 House 被采样最多的段落之一 | 7   |
+|  1  | [**Love Is the Message**](https://music.163.com/song?id=26151043&uct2=U2FsdGVkX18wFBIbkDg5E2WR71/DmNG/DCTtMj4+gyI=) | MFSB        | 1973 | **入门** · 节奏基底；弦乐与贝斯的“对话”；★**中段 Breakdown**（无鼓，只剩弦乐），后世 House 被采样最多的段落之一 | 7   |
 |  2  | **[Disco Inferno](https://music.163.com/song?id=19356039&uct2=U2FsdGVkX1+EspSb+0OYFI79RufVrw1zFolCvMSu0MI=)**       | The Trammps | 1976 | **最典型** · 四踩 + 弦乐堆叠 + 铜管爆发；★**转调升 key**                           | 6   |
 
 ### B 组 · 结构
