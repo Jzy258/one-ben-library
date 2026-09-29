@@ -105,6 +105,10 @@ export default {
         h(DefaultTheme.Layout, props, {
           'doc-before': () => h(Breadcrumb),
           'nav-bar-title-before': () => h(SidebarToggle),
+          // 首页：「最近更新」按钮下方标注站点构建时刻
+          // （__SITE_LAST_UPDATE__ 为构建期常量，定义见 .vitepress/config.mts）
+          'home-hero-actions-after': () =>
+            h('p', { class: 'home-update-stamp' }, `${__SITE_LAST_UPDATE__} 更新`),
           ...slots
         })
     }

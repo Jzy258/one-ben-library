@@ -14,6 +14,13 @@ const base = process.env.VITEPRESS_BASE || '/'
 // 手工拼接静态资源路径时使用：确保以 / 结尾
 const basePrefix = base.endsWith('/') ? base : base + '/'
 
+// 首页「最近更新」按钮下方的时间戳 = **本次构建时刻**（部署即一次站点更新）。
+// 北京时间 UTC+8 无夏令时 → 直接偏移，免 Intl 依赖；格式 yyyy-MM-dd HH:mm。
+// 做成构建期常量（下方 vite.define）注入主题 —— 不写回 index.md，否则本地构建会脏工作区。
+const pad2 = (n: number) => String(n).padStart(2, '0')
+const atUtc8 = new Date(Date.now() + 8 * 3600 * 1000)
+const SITE_LAST_UPDATE = `${atUtc8.getUTCFullYear()}-${pad2(atUtc8.getUTCMonth() + 1)}-${pad2(atUtc8.getUTCDate())} ${pad2(atUtc8.getUTCHours())}:${pad2(atUtc8.getUTCMinutes())}`
+
 // 动态检测顶层分类目录：兼容完整名 `T 工业技术`（本地）与 CI 压缩名 `T`
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const CLASS_DIR_RE = /^[A-Z]{1,3}(?:\d[\d.]*[A-Z]*)?\s/
@@ -30,6 +37,12 @@ const TOP_DIR =
 
 export default defineConfig({
   base,
+  // 构建期常量 → 主题渲染首页「最近更新」时间戳（见 .vitepress/theme/index.js）
+  vite: {
+    define: {
+      __SITE_LAST_UPDATE__: JSON.stringify(SITE_LAST_UPDATE)
+    }
+  },
   lang: 'zh-CN',
   title: '壹苯图书馆',
   description: '个人知识笔记库 · 按中国图书馆分类法整理',

@@ -30,3 +30,11 @@
 .VPNavBar:not(.has-sidebar) .sidebar-toggle {
   display: none;
 }
+
+/* 首页：「最近更新」按钮下方的时间戳 */
+.home-update-stamp {
+  margin: 14px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--vp-c-text-2);
+}
