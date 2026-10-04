@@ -147,3 +147,6 @@ npm run preview    # 预览构建产物（本地预览用）
 ---
 
 *文档维护：本文随项目更新；重大机制变化时同步修订。*
+
+> 📘 深度技术细节与踩坑（构建 / 部署 / 主题 hack）→ [VITEPRESS-NOTES.md](VITEPRESS-NOTES.md)
+
